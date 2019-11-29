@@ -1,7 +1,11 @@
 import {NgModule} from '@angular/core';
-import {AccessoriesComponent} from './accessories.component';
 import {CommonModule} from '@angular/common';
-import {AccessoriesRoutingComponent} from './accessories-routing.module';
+
+import { AccessoriesComponent } from './accessories.component';
+import { AccessoriesRoutingComponent } from './accessories-routing.module';
+import { ProductItemModule } from '../../shared/product-item/product-item.module';
+import { SpinnerModule } from '../../shared/spinner/spinner-module';
+import { AccessoriesService } from './accessories.service';
 
 @NgModule({
   declarations: [
@@ -9,10 +13,15 @@ import {AccessoriesRoutingComponent} from './accessories-routing.module';
   ],
   imports: [
     CommonModule,
-    AccessoriesRoutingComponent
+    AccessoriesRoutingComponent,
+    ProductItemModule,
+    SpinnerModule
   ],
   exports: [
     AccessoriesComponent
+  ],
+  providers: [
+    AccessoriesService
   ]
 })
 export class AccessoriesModule {}

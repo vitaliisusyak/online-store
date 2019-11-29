@@ -1,0 +1,8 @@
+.loading-status ::ng-deep .mat-spinner circle {
+  stroke: #000000;
+}
+
+mat-spinner {
+  margin: 0 auto;
+}
+

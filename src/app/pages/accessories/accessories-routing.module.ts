@@ -7,4 +7,4 @@ const routes: Routes = [{
   component: AccessoriesComponent
 }]
 
-export const AccessoriesRoutingComponent: ModuleWithProviders = RouterModule.forChild(routes)
+export const AccessoriesRoutingComponent: ModuleWithProviders = RouterModule.forChild(routes);

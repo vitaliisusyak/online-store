@@ -1,7 +1,11 @@
 import {NgModule} from '@angular/core';
-import {JacketsComponent} from './jackets.component';
 import {CommonModule} from '@angular/common';
+
+import {JacketsComponent} from './jackets.component';
+
+import {ProductItemModule} from '../../shared/product-item/product-item.module';
 import {JacketsRoutingModule} from './jackets-routing.module';
+import {SpinnerModule} from '../../shared/spinner/spinner-module';
 
 @NgModule ({
   declarations: [
@@ -9,7 +13,9 @@ import {JacketsRoutingModule} from './jackets-routing.module';
   ],
   imports: [
     CommonModule,
-    JacketsRoutingModule
+    JacketsRoutingModule,
+    ProductItemModule,
+    SpinnerModule
   ],
   exports: [
     JacketsComponent

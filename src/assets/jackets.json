@@ -1,0 +1,19 @@
+{
+  "jackets": [
+    {
+      "id": 1,
+      "name": "jacket1",
+      "price": "1234 UA"
+    },
+    {
+      "id": 1,
+      "name": "jacket2",
+      "price": "1234 UA"
+    },
+    {
+      "id": 1,
+      "name": "jacket3",
+      "price": "1234 UA"
+    }
+  ]
+}

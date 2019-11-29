@@ -1,7 +1,11 @@
-import {NgModule} from '@angular/core';
-import {ShirtsComponent} from './shirts.component';
-import {CommonModule} from '@angular/common';
-import {ShirtsRoutingModule} from './shirts-routing.module'
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+
+import { ShirtsComponent } from './shirts.component';
+import { ShirtsRoutingModule } from './shirts-routing.module';
+import { ProductItemModule } from '../../shared/product-item/product-item.module';
+import { ShirtsService } from './shirts.service';
+import {SpinnerModule} from '../../shared/spinner/spinner-module';
 
 @NgModule ({
   declarations: [
@@ -9,10 +13,15 @@ import {ShirtsRoutingModule} from './shirts-routing.module'
   ],
   imports: [
     CommonModule,
-    ShirtsRoutingModule
+    ShirtsRoutingModule,
+    ProductItemModule,
+    SpinnerModule
   ],
   exports: [
     ShirtsComponent
+  ],
+  providers: [
+    ShirtsService
   ]
 })
 
