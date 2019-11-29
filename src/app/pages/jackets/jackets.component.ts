@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, Component, OnInit, ChangeDetectorRef} from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, ChangeDetectorRef } from '@angular/core';
 
 import { JacketsService } from './jackets.service';
 

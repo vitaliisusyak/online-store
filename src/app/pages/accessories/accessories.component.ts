@@ -1,6 +1,6 @@
-import {ChangeDetectionStrategy, Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, ChangeDetectorRef } from '@angular/core';
 
-import {AccessoriesService} from './accessories.service';
+import { AccessoriesService } from './accessories.service';
 
 @Component({
   selector: 'app-accessories',

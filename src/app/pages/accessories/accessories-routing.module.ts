@@ -1,6 +1,6 @@
-import {AccessoriesComponent} from './accessories.component';
-import {ModuleWithProviders} from '@angular/core';
-import {RouterModule, Routes} from '@angular/router';
+import { AccessoriesComponent } from './accessories.component';
+import { ModuleWithProviders } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [{
   path: '',

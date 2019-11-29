@@ -1,6 +1,6 @@
-import {ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit} from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 
-import {SuitsService} from './suits.service';
+import { SuitsService } from './suits.service';
 
 @Component({
   selector: 'app-suits',

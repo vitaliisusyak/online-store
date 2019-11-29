@@ -1,7 +1,7 @@
-import {ModuleWithProviders} from '@angular/core';
-import {RouterModule, Routes} from '@angular/router';
+import { ModuleWithProviders } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
 
-import {JacketsComponent} from './jackets.component';
+import { JacketsComponent } from './jackets.component';
 
 const routes: Routes = [{
   path: '',

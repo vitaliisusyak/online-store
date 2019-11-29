@@ -1,6 +1,6 @@
-import {ChangeDetectionStrategy, Component, OnInit, ChangeDetectorRef} from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, ChangeDetectorRef } from '@angular/core';
 
-import {UtilityJacketsService} from './utility-jackets.service';
+import { UtilityJacketsService } from './utility-jackets.service';
 
 @Component({
   selector: 'app-utility-jackets',
