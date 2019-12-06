@@ -8,7 +8,7 @@ import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core
 })
 export class ProductItemComponent implements OnInit {
   @Input() products: object;
-  searchResult: any;
+  searchResult: string;
 
   constructor() { }
 

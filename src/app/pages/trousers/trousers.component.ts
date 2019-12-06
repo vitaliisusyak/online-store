@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component, OnInit, ChangeDetectorRef } from '@angular/core';
 
 import { TrousersService } from './trousers.service';
+import { BaseComponent } from '@shared-components/abstract-component/base-component.component';
 
 @Component({
   selector: 'app-trousers',
@@ -8,11 +9,11 @@ import { TrousersService } from './trousers.service';
   styleUrls: ['./trousers.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class TrousersComponent implements OnInit {
+export class TrousersComponent extends BaseComponent implements OnInit {
   trousers: object;
-  showSpinner: boolean;
 
   constructor(private trousersService: TrousersService, private cd: ChangeDetectorRef ) {
+    super();
   }
 
   ngOnInit() {

@@ -1,12 +1,3 @@
-/*.ui-inputgroup {
-  margin-bottom: 5px;
-  width: 100%;
-}
-
-.ui-button-secondary button, .ui-inputgroup input {
-  width: 100%;
-}*/
-
 .login-wrapper {
   display: flex;
   align-items: center;

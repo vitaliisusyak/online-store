@@ -15,10 +15,6 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
   ],
   imports: [
     LoginRoutingComponent,
-    /*    PanelModule,
-        PasswordModule,
-        InputTextModule,
-        ButtonModule,*/
     MatCardModule,
     MatFormFieldModule,
     FormsModule,

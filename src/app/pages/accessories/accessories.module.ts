@@ -6,7 +6,6 @@ import { AccessoriesRoutingComponent } from './accessories-routing.module';
 import { ProductItemModule } from '@shared-components/product-item/product-item.module';
 import { SpinnerModule } from '@shared-components/spinner/spinner-module';
 import { AccessoriesService } from './accessories.service';
-import {FormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -16,8 +15,7 @@ import {FormsModule} from '@angular/forms';
     CommonModule,
     AccessoriesRoutingComponent,
     ProductItemModule,
-    SpinnerModule,
-    FormsModule
+    SpinnerModule
   ],
   exports: [
     AccessoriesComponent
