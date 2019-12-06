@@ -1,15 +1,31 @@
-.ui-inputgroup {
+/*.ui-inputgroup {
   margin-bottom: 5px;
   width: 100%;
 }
 
 .ui-button-secondary button, .ui-inputgroup input {
   width: 100%;
-}
+}*/
 
 .login-wrapper {
   display: flex;
   align-items: center;
   justify-content: center;
   height: 100%;
+}
+
+.login-card {
+  min-width: 400px;
+}
+
+.form-full-width {
+  width: 100%;
+}
+
+.mat-card-header {
+  justify-content: center;
+}
+
+.mat-card-actions, .mat-card-content, .mat-card-subtitle {
+  margin-bottom: 0;
 }

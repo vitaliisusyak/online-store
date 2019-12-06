@@ -3,8 +3,8 @@ import { CommonModule } from '@angular/common';
 
 import { TrousersComponent } from './trousers.component';
 import { TrousersRoutingComponent } from './trousers-routing.module';
-import { ProductItemModule } from '../../shared/product-item/product-item.module';
-import { SpinnerModule } from '../../shared/spinner/spinner-module';
+import { ProductItemModule } from '@shared-components/product-item/product-item.module';
+import { SpinnerModule } from '@shared-components/spinner/spinner-module';
 import { TrousersService } from './trousers.service';
 
 @NgModule ({

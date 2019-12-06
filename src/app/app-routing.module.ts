@@ -23,10 +23,6 @@ const routes: Routes = [
     loadChildren: () => import('./pages/shirts/shirts.module').then(mod => mod.ShirtsModule)
   },
   {
-    path: 'utility-jackets',
-    loadChildren: () => import('./pages/utility-jackets/utility-jackets.module').then(mod => mod.UtilityJacketsModule)
-  },
-  {
     path: 'accessories',
     loadChildren: () => import('./pages/accessories/accessories.module').then(mod => mod.AccessoriesModule)
   },

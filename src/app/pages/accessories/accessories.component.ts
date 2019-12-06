@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component, OnInit, ChangeDetectorRef } from '@angular/core';
 
 import { AccessoriesService } from './accessories.service';
+import { BaseComponent } from '@shared-components/abstract-component/base-component.component';
 
 @Component({
   selector: 'app-accessories',
@@ -8,11 +9,11 @@ import { AccessoriesService } from './accessories.service';
   styleUrls: ['./accessories.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class AccessoriesComponent implements OnInit {
-  accessories: any;
-  showSpinner: boolean;
+export class AccessoriesComponent extends BaseComponent implements OnInit {
+  accessories: object;
 
   constructor(private accessoriesService: AccessoriesService, private cd: ChangeDetectorRef) {
+    super();
   }
 
   ngOnInit(): void {

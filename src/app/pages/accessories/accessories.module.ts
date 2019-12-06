@@ -3,9 +3,10 @@ import { CommonModule } from '@angular/common';
 
 import { AccessoriesComponent } from './accessories.component';
 import { AccessoriesRoutingComponent } from './accessories-routing.module';
-import { ProductItemModule } from '../../shared/product-item/product-item.module';
-import { SpinnerModule } from '../../shared/spinner/spinner-module';
+import { ProductItemModule } from '@shared-components/product-item/product-item.module';
+import { SpinnerModule } from '@shared-components/spinner/spinner-module';
 import { AccessoriesService } from './accessories.service';
+import {FormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { AccessoriesService } from './accessories.service';
     CommonModule,
     AccessoriesRoutingComponent,
     ProductItemModule,
-    SpinnerModule
+    SpinnerModule,
+    FormsModule
   ],
   exports: [
     AccessoriesComponent

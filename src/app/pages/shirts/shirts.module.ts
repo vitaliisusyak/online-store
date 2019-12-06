@@ -3,9 +3,9 @@ import { CommonModule } from '@angular/common';
 
 import { ShirtsComponent } from './shirts.component';
 import { ShirtsRoutingModule } from './shirts-routing.module';
-import { ProductItemModule } from '../../shared/product-item/product-item.module';
+import { ProductItemModule } from '@shared-components/product-item/product-item.module';
 import { ShirtsService } from './shirts.service';
-import {SpinnerModule} from '../../shared/spinner/spinner-module';
+import { SpinnerModule } from '@shared-components/spinner/spinner-module';
 
 @NgModule ({
   declarations: [

@@ -6,3 +6,7 @@ ul>li {
   text-align: center;
   font-size: 1.2em;
 }
+
+.icons li {
+  float: right;
+}
