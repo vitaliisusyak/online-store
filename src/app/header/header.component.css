@@ -1,0 +1,8 @@
+.navbar-inverse {
+  border-radius: 0;
+}
+
+ul>li {
+  text-align: center;
+  font-size: 1.2em;
+}

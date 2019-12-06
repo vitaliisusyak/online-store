@@ -1,0 +1,24 @@
+{
+  "accessories": [
+    {
+      "id": 1,
+      "name": "accesorie1",
+      "price": "1234 UA"
+    },
+    {
+      "id": 1,
+      "name": "accesorie2",
+      "price": "1dsz4 UA"
+    },
+    {
+      "id": 1,
+      "name": "accesorie2",
+      "price": "1zxczxc4 UA"
+    },
+    {
+      "id": 1,
+      "name": "accesorie4",
+      "price": "1234 UA"
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+.item-image {
+  font-size: 6em;
+  color: lightgray;
+  height: 80px;
+}
+
+.item-price {
+  font-weight: bold;
+}
+
+.description {
+  margin-left: 1.3em;
+}
+
+.item-list {
+  display: inline-flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.item {
+  text-align: center;
+}
+
