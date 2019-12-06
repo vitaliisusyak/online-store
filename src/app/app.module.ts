@@ -8,7 +8,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { AppRoutingModule } from './app-routing.module';
-import { SpinnerModule } from '@shared-components/spinner/spinner-module';
+import { SpinnerModule } from '@shared/components';
 
 @NgModule({
   declarations: [

@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, OnInit, ChangeDetectorRef } from '@angular/core';
 
 import { AccessoriesService } from './accessories.service';
-import { BaseComponent } from '@shared-components/abstract-component/base-component.component';
+import { BaseComponent } from '@shared/components';
 
 @Component({
   selector: 'app-accessories',

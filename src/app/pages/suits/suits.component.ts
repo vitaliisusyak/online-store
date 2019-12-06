@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 
 import { SuitsService } from './suits.service';
-import { BaseComponent } from '@shared-components/abstract-component/base-component.component';
+import { BaseComponent } from '@shared/components';
 
 @Component({
   selector: 'app-suits',

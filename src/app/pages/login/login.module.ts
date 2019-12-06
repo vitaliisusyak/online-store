@@ -1,13 +1,9 @@
 import { NgModule } from '@angular/core';
+import { MatButtonModule, MatCardModule, MatFormFieldModule, MatInputModule } from '@angular/material';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { LoginComponent } from './login.component';
 import { LoginRoutingComponent } from './login-router.module';
-
-/*
-import { ButtonModule, InputTextModule, PanelModule, PasswordModule } from 'primeng/primeng';
-*/
-import {MatButtonModule, MatCardModule, MatFormFieldModule, MatInputModule} from '@angular/material';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [

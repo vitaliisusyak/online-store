@@ -3,8 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { SuitsComponent } from './suits.component';
 import { SuitsRoutingComponent } from './suits-routing.module';
-import { ProductItemModule } from '@shared-components/product-item/product-item.module';
-import { SpinnerModule } from '@shared-components/spinner/spinner-module';
+import { ProductItemModule, SpinnerModule } from '@shared/components';
 import { SuitsService } from './suits.service';
 
 
