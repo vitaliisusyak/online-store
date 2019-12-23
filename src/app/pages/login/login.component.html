@@ -3,7 +3,7 @@
     <mat-card-header class="login-header">
       <mat-card-title>Login</mat-card-title>
     </mat-card-header>
-    <form #loginForm="ngForm" class="from-form" (ngSubmit)="onSubmit(loginForm)">
+    <form #loginForm="ngForm" class="from-form" (ngSubmit)="authenticate(loginForm)">
       <mat-card-content>
         <mat-form-field class="form-full-width">
           <input matInput placeholder="Email"
@@ -25,7 +25,8 @@
         <button mat-raised-button
               color="primary"
               type="submit"
-              [disabled]="loginForm.invalid">Sign In</button>
+              [disabled]="loginForm.invalid"
+        >Sign In</button>
       </mat-card-actions>
     </form>
   </mat-card>
