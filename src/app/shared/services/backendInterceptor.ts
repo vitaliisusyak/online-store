@@ -148,7 +148,6 @@ const usersData = {
 export class BackendInterceptor implements HttpInterceptor {
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    debugger
     console.log('Loaded from http call :' + request.url);
     switch (request.url) {
       case 'http://localhost:4200/accessories' :

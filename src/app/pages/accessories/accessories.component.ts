@@ -2,7 +2,6 @@ import { ChangeDetectionStrategy, Component, OnInit, ChangeDetectorRef } from '@
 
 import { AccessoriesService } from './accessories.service';
 import { BaseComponent } from '@shared/components';
-import {HttpClient} from '@angular/common/http';
 
 @Component({
   selector: 'app-accessories',
@@ -13,7 +12,7 @@ import {HttpClient} from '@angular/common/http';
 export class AccessoriesComponent extends BaseComponent implements OnInit {
   accessories: object;
 
-  constructor(private accessoriesService: AccessoriesService, private cd: ChangeDetectorRef, private http: HttpClient) {
+  constructor(private accessoriesService: AccessoriesService, private cd: ChangeDetectorRef) {
     super();
   }
 
@@ -23,12 +22,6 @@ export class AccessoriesComponent extends BaseComponent implements OnInit {
       this.accessories = data.accessories;
       this.showSpinner = false;
       this.cd.markForCheck();
-    });
-  }
-
-  getJackets() {
-    this.http.get('jackets').subscribe(data => {
-      console.log(data);
     });
   }
 }
