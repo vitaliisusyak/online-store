@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { JacketsComponent } from './jackets.component';
 import { ProductItemModule, SpinnerModule } from '@shared/components';
 import { JacketsRoutingModule } from './jackets-routing.module';
+import {JacketsService} from './jackets.service';
 
 @NgModule ({
   declarations: [
@@ -17,6 +18,9 @@ import { JacketsRoutingModule } from './jackets-routing.module';
   ],
   exports: [
     JacketsComponent
+  ],
+  providers: [
+    JacketsService
   ]
 })
 export class JacketsModule {}

@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 
-@Injectable({
-  providedIn: 'root'
-})
+import { Observable } from 'rxjs';
+
+@Injectable()
+
 export class JacketsService {
-  private jsonURL = '../../../assets/jackets.json';
+
+  private jsonURL = 'http://localhost:4200/jackets';
 
   constructor(private http: HttpClient) {
   }
