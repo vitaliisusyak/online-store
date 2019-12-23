@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component, OnInit, ChangeDetectorRef } from '@angular/core';
 
 import { JacketsService } from './jackets.service';
+import { BaseComponent } from '@shared/components';
 
 @Component({
   selector: 'app-jackets',
@@ -8,11 +9,11 @@ import { JacketsService } from './jackets.service';
   styleUrls: ['./jackets.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class JacketsComponent implements OnInit {
+export class JacketsComponent extends BaseComponent implements OnInit {
   jackets: object;
-  showSpinner: boolean;
 
   constructor(private jacketsService: JacketsService, private cd: ChangeDetectorRef) {
+    super();
   }
 
   ngOnInit() {

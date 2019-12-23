@@ -1,22 +1,34 @@
 <div class="login-wrapper">
-
-  <p-panel header="Login" class="col-sm-3">
-
-    <div class="ui-inputgroup">
-      <span class="ui-inputgroup-addon"><i class="pi pi-user"></i></span>
-      <input type="text" placeholder="Username">
-    </div>
-
-    <div class="ui-inputgroup">
-      <span class="ui-inputgroup-addon"><i class="pi pi-lock"></i></span>
-      <input type="password" placeholder="Password">
-    </div>
-
-    <div class="ui-button-secondary">
-      <button pButton type="button" label="Login" class="ui-button-raised ui-button-secondary" routerLink="/home"></button>
-    </div>
-
-  </p-panel>
-
+  <mat-card class="login-card">
+    <mat-card-header class="login-header">
+      <mat-card-title>Login</mat-card-title>
+    </mat-card-header>
+    <form #loginForm="ngForm" class="from-form" (ngSubmit)="onSubmit(loginForm)">
+      <mat-card-content>
+        <mat-form-field class="form-full-width">
+          <input matInput placeholder="Email"
+                 [(ngModel)]="email"
+                 name="email"
+                 required
+                 email/>
+        </mat-form-field>
+        <mat-form-field class="form-full-width">
+          <input matInput placeholder="Password"
+                 [(ngModel)]="password"
+                 type="password"
+                 name="password"
+                 required
+                 minlength="6"/>
+        </mat-form-field>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-raised-button
+              color="primary"
+              type="submit"
+              [disabled]="loginForm.invalid">Sign In</button>
+      </mat-card-actions>
+    </form>
+  </mat-card>
 </div>
+
 
