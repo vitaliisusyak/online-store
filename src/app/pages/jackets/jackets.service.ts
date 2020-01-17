@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 
 export class JacketsService {
 
-  private jsonURL = 'http://localhost:4200/jackets';
+  private jsonURL = '/jackets';
 
   constructor(private http: HttpClient) {
   }

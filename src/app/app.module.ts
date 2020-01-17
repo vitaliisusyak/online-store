@@ -9,7 +9,7 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { AppRoutingModule } from './app-routing.module';
 import { SpinnerModule } from '@shared/components';
-import {BackendInterceptor} from '@shared/services/backendInterceptor';
+import { BackendInterceptor } from '@shared/services/backendInterceptor';
 
 @NgModule({
   declarations: [

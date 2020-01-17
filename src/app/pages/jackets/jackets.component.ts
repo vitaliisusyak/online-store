@@ -11,6 +11,7 @@ import { BaseComponent } from '@shared/components';
 })
 export class JacketsComponent extends BaseComponent implements OnInit {
   jackets: object;
+  showSpinner: boolean;
 
   constructor(private jacketsService: JacketsService, private cd: ChangeDetectorRef) {
     super();

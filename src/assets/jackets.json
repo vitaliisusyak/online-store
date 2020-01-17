@@ -3,17 +3,20 @@
     {
       "id": 1,
       "name": "jacket1",
-      "price": "1234 UA"
+      "price": "1234 UA",
+      "image": "/assets/jackets/product1.jpg"
     },
     {
       "id": 1,
       "name": "jacket2",
-      "price": "1234 UA"
+      "price": "1234 UA",
+      "image": "/assets/jackets/product2.jpg"
     },
     {
       "id": 1,
       "name": "jacket3",
-      "price": "1234 UA"
+      "price": "1234 UA",
+      "image": "/assets/jackets/product3.jpg"
     }
   ]
 }

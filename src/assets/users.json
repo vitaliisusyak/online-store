@@ -1,8 +1,22 @@
 [
-  {
-    "role": "admin",
-    "email": "test@test.com",
-    "password": "123456",
-    "token": "1qazxsw23edc"
-  }
+    {
+      "id": 1,
+      "email": "qweqweqwe@asqwqwe",
+      "password": "trouser1"
+    },
+    {
+      "id": 2,
+      "email": "qweqwe@asqwqwe",
+      "password": "taber1"
+    },
+    {
+      "id": 3,
+      "email": "qweqwwe@asqwqwe",
+      "password": "trouse132"
+    },
+    {
+      "id": 4,
+      "email": "qweqweqwe@asqwe",
+      "password": "troasdasaa"
+    }
 ]
