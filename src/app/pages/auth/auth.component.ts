@@ -19,7 +19,6 @@ export class AuthComponent implements OnInit {
   hide: true;
   hideCheck: true;
   hideLogin: true;
-  errorSign: string = null;
 
   constructor(private authService: AuthService, private cd: ChangeDetectorRef, private router: Router, private fb: FormBuilder) {
     this.frmSignUp = this.createSignUpForm();
@@ -80,7 +79,6 @@ export class AuthComponent implements OnInit {
 
 
   ngOnInit() {
-    console.log(this.errorSign);
   }
 
   onSwitchMode() {
@@ -116,9 +114,7 @@ export class AuthComponent implements OnInit {
         this.router.navigate(['/home']);
       },
       error => {
-        console.log(error.message);
-        const showError = error.message;
-        console.log(error.message);
+        console.log(error);
       });
     this.frmSignUp.reset();
     console.log(this.frmSignUp.value);
