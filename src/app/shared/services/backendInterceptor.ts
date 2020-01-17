@@ -3,8 +3,6 @@ import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest, HttpResponse } fr
 import { Observable, of, throwError } from 'rxjs';
 import { delay, dematerialize, materialize, mergeMap } from 'rxjs/operators';
 
-import Jackets from '../../../assets/jackets.json';
-
 const accessoriesData = {
   accessories: [
     {
@@ -163,7 +161,7 @@ export class BackendInterceptor implements HttpInterceptor {
         case url.endsWith('/accessories') && method === 'GET':
           return of(new HttpResponse({status: 200, body: accessoriesData}));
         case url.endsWith('/jackets') && method === 'GET':
-          return of(new HttpResponse({status: 200, body: Jackets}));
+          return of(new HttpResponse({status: 200, body: jacketsData}));
         case url.endsWith('/shirts'):
           return of(new HttpResponse({status: 200, body: shirtsData}));
         case url.endsWith('/suits'):

@@ -3,7 +3,7 @@
   align-items: center;
   justify-content: center;
   height: 100%;
-  background: url(back3.jpg) no-repeat center center fixed;
+  background: url(../../../assets/authBackground.jpg) no-repeat center center fixed;
   background-size: cover;
   color: aliceblue;
 }
@@ -55,8 +55,4 @@ input:-webkit-autofill:active {
 
 .login-button, .switch-link {
   text-transform: uppercase;
-}
-
-.mat-form-field {
-
 }

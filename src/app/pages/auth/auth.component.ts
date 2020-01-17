@@ -1,9 +1,9 @@
 import { ChangeDetectionStrategy, Component, OnInit, ChangeDetectorRef } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import { FormBuilder, FormGroup, Validators} from '@angular/forms';
 import { Router } from '@angular/router';
 
 import { AuthService } from './auth.service';
-import {CustomValidators} from './custom-validators';
+import { CustomValidators } from '@shared/services';
 
 @Component({
   selector: 'app-login',
