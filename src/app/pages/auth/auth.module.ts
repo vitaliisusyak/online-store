@@ -1,13 +1,14 @@
 import { NgModule } from '@angular/core';
 import { MatButtonModule, MatCardModule, MatFormFieldModule, MatInputModule } from '@angular/material';
 import { ReactiveFormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import { MatIconModule } from '@angular/material/icon';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 import { AuthComponent } from './auth.component';
 import { AuthRoutingComponent } from './auth-router.module';
 import { AuthService } from './auth.service';
-import {CommonModule} from '@angular/common';
-import {MatIconModule} from '@angular/material/icon';
-import {MatTooltipModule} from '@angular/material/tooltip';
+
 
 
 @NgModule({
