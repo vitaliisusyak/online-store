@@ -1,0 +1,144 @@
+<div class="login-wrapper">
+
+  <mat-card class="login-card">
+
+    <mat-card-header class="login-header">
+      <mat-card-title>Welcome</mat-card-title>
+    </mat-card-header>
+
+    <form class="from-form" [formGroup]="frmSignUp" *ngIf="!isLogInMode">
+
+      <mat-card-content>
+        <div>
+          <mat-form-field class="form-full-width">
+            <input matInput placeholder="First Name"
+                 id="name"
+                 name="name"
+                 type="text"
+                 formControlName="name"/>
+            <mat-error *ngIf="frmSignUp.get('name').hasError('required')">
+              Name is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <mat-form-field class="form-full-width">
+          <input matInput placeholder="Email"
+                 id="email"
+                 type="email"
+                 formControlName="email"
+                 name="email"/>
+          <mat-error *ngIf="frmSignUp.get('email').hasError('email')">
+            Please enter a valid email address
+          </mat-error>
+          <mat-error *ngIf="frmSignUp.get('email').hasError('required')">
+            Email is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="form-full-width">
+          <input matInput placeholder="Password"
+                 [type]="hide ? 'password' : 'text'"
+                 id="password"
+                 type="password"
+                 formControlName="password"
+                 name="password"
+                 matTooltip="Password must contain not less than eight characters, at least one number, both lower and uppercase letters, and special character">
+            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="!hide" type="button">
+            <mat-icon>
+              {{hide ? 'visibility_off' : 'visibility'}}
+            </mat-icon>
+          </button>
+          <mat-error *ngIf="frmSignUp.get('password').hasError('hasError')">
+            Please enter a valid password!
+          </mat-error>
+          <mat-error *ngIf="frmSignUp.get('password').hasError('required')">
+            Password is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+        <div>
+          <mat-form-field class="form-full-width">
+            <input matInput placeholder="Confirm your password"
+                 [type]="hideCheck ? 'password' : 'text'"
+                 id="confirmPassword"
+                 type="password"
+                 formControlName="confirmPassword"
+                 name="confirmPassword"/>
+            <button mat-icon-button matSuffix (click)="hideCheck = !hideCheck" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="!hideCheck" type="button">
+              <mat-icon>
+                {{hideCheck ? 'visibility_off' : 'visibility'}}
+              </mat-icon>
+            </button>
+            <mat-error *ngIf="frmSignUp.get('confirmPassword').hasError('NoPasswordMatch')">
+              Password do not match
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </mat-card-content>
+
+
+      <mat-card-actions class="form-full-width submit">
+        <button mat-raised-button
+                class="login-button"
+                color="primary"
+                type="submit"
+                (click)="signUp()"
+                [disabled]="frmSignUp.invalid"
+        >Sign up</button>
+      </mat-card-actions>
+
+    </form>
+
+    <form class="from-form" [formGroup]="frmLogin" *ngIf="isLogInMode">
+
+      <mat-card-content>
+        <mat-form-field class="form-full-width">
+          <input matInput placeholder="Email"
+                 id="loginEmail"
+                 type="email"
+                 formControlName="email"
+                 name="email"/>
+          <mat-error *ngIf="frmLogin.get('email').hasError('email')">
+            Please enter a valid email address
+          </mat-error>
+          <mat-error *ngIf="frmLogin.get('email').hasError('required')">
+            Email is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="form-full-width">
+          <input matInput placeholder="Password"
+                 [type]="hideLogin ? 'password' : 'text'"
+                 id="loginPassword"
+                 type="password"
+                 formControlName="password"
+                 name="password"/>
+          <button mat-icon-button matSuffix (click)="hideLogin = !hideLogin" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="!hideLogin" type="button">
+            <mat-icon>
+              {{hideLogin ? 'visibility_off' : 'visibility'}}
+            </mat-icon>
+          </button>
+          <mat-error *ngIf="frmLogin.get('password').hasError('required')">
+            Password is required
+          </mat-error>
+        </mat-form-field>
+      </mat-card-content>
+
+      <mat-card-actions class="form-full-width submit">
+        <button mat-raised-button
+                class="login-button"
+                color="primary"
+                type="submit"
+                [disabled]="frmLogin.invalid"
+                (click)="logIn()"
+        >Sign in</button>
+      </mat-card-actions>
+
+    </form>
+
+    <div class="switch">
+      <div>{{ isLogInMode ? "Is not a member yet?" : "Already a member?" }}</div>
+      <div><a class="switch-link" (click)="onSwitchMode()">{{ isLogInMode ? "Sign Up" : "Sign In" }}</a></div>
+    </div>
+
+  </mat-card>
+</div>
+
+

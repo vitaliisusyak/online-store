@@ -1,29 +1,29 @@
-.item-image {
-  font-size: 6em;
-  color: lightgray;
-  height: 80px;
-}
-
 .item-price {
   font-weight: bold;
 }
 
-.description {
-  margin-left: 1.3em;
-}
-
-.item-list {
-  display: inline-flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-}
-
 .item {
   text-align: center;
+  line-height: 1.5em;
+  width: max-content;
+  font-family: 'Roboto', sans-serif;
+}
+
+.item:hover {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  cursor: pointer;
 }
 
 .input-group {
   display: flex;
   justify-content: flex-end;
+}
+
+.item-name {
+  text-transform: uppercase;
+  font-weight: 900;
+}
+
+.item-price {
+  font-weight: lighter;
 }

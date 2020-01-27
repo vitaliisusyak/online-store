@@ -10,3 +10,7 @@ ul>li {
 .icons li {
   float: right;
 }
+
+.navbar {
+  font-family: 'Open Sans', sans-serif;
+}
