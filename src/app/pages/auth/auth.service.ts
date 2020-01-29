@@ -1,10 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-
 import { Observable, Subject } from 'rxjs';
+import { tap } from 'rxjs/operators';
 
 import { User } from './user.model';
-import { tap } from 'rxjs/operators';
 
 @Injectable()
 
@@ -39,11 +38,6 @@ export class AuthService {
   }
   private handleAuthentication(name: string, email: string, id: string, token: string) {
     const user = new User(name, email, id, token);
-    if (user) {
-      console.log(true);
-    } else {
-      console.log(false);
-    }
     this.userSub.next(user);
   }
 }

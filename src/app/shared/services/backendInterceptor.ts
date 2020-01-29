@@ -138,8 +138,6 @@ const trousersData = {
 
 const users = JSON.parse(localStorage.getItem('users')) || [];
 
-
-
 @Injectable()
 
 export class BackendInterceptor implements HttpInterceptor {
