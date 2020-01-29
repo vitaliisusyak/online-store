@@ -100,7 +100,6 @@ export class AuthComponent implements OnInit {
         console.log(error);
       });
     this.frmLogin.reset();
-    console.log(this.frmLogin.value);
   }
 
   signUp() {
@@ -117,7 +116,6 @@ export class AuthComponent implements OnInit {
         console.log(error);
       });
     this.frmSignUp.reset();
-    console.log(this.frmSignUp.value);
   }
 }
 

@@ -138,6 +138,8 @@ const trousersData = {
 
 const users = JSON.parse(localStorage.getItem('users')) || [];
 
+
+
 @Injectable()
 
 export class BackendInterceptor implements HttpInterceptor {
@@ -150,7 +152,6 @@ export class BackendInterceptor implements HttpInterceptor {
       .pipe(materialize())
       .pipe(delay(200))
       .pipe(dematerialize());
-
 
     function handleRoute() {
       switch (true) {
@@ -183,21 +184,25 @@ export class BackendInterceptor implements HttpInterceptor {
         return error('Username or password is incorrect');
       } else {
         return ok({
-          token: `fake-jwt-token${user.id}`
+          id: user.id,
+          email: user.email,
+          token: user.token
           });
         }
     }
 
     function signup() {
-      const { email, password } = body;
+      const email  = body;
       const user = users.find(x => x.email === email);
       if (!user) {
-        body.id = users.length ? Math.max(...users.map(x => x.id)) + 1 : 1;
+        body.id = users.length ? users.length + 1 : 1;
+        body.token = 'fake-jwt-token' + body.id;
         users.push(body);
-        console.log(users);
         localStorage.setItem('users', JSON.stringify(users));
         return ok({
-          token: `fake-jwt-token${body.id}`
+          id: body.id,
+          email: body.email,
+          token: body.token
         });
       } else {
         return error('Username is already registered');
