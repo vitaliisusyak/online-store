@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { JacketsComponent } from './jackets.component';
-import { ProductItemModule, SpinnerModule } from '@shared/components';
+import { ProductsModule, SpinnerModule } from '@shared/components';
 import { JacketsRoutingModule } from './jackets-routing.module';
 import {JacketsService} from './jackets.service';
 
@@ -13,7 +13,7 @@ import {JacketsService} from './jackets.service';
   imports: [
     CommonModule,
     JacketsRoutingModule,
-    ProductItemModule,
+    ProductsModule,
     SpinnerModule
   ],
   exports: [

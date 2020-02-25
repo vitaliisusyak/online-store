@@ -56,3 +56,9 @@ input:-webkit-autofill:active {
 .login-button, .switch-link {
   text-transform: uppercase;
 }
+
+.has-error {
+  text-align: center;
+  font-weight: bold;
+  color: #f44336;
+}

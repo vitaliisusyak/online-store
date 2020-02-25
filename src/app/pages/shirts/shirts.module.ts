@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { ShirtsComponent } from './shirts.component';
 import { ShirtsRoutingModule } from './shirts-routing.module';
-import { ProductItemModule, SpinnerModule } from '@shared/components';
+import { ProductsModule, SpinnerModule } from '@shared/components';
 import { ShirtsService } from './shirts.service';
 
 @NgModule ({
@@ -13,7 +13,7 @@ import { ShirtsService } from './shirts.service';
   imports: [
     CommonModule,
     ShirtsRoutingModule,
-    ProductItemModule,
+    ProductsModule,
     SpinnerModule
   ],
   exports: [

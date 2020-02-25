@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, DoCheck, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import { Location } from '@angular/common';
 import { Router } from '@angular/router';
 
@@ -10,10 +10,12 @@ import { Router } from '@angular/router';
 
 export class AppComponent implements OnInit {
   title = 'online-store';
-  loading = false;
+
+  constructor(private location: Location,
+              private router: Router) {
+  }
+
   ngOnInit(): void {
   }
 
-  constructor(private location: Location, private router: Router) {
-  }
 }

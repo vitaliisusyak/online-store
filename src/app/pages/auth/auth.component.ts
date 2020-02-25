@@ -1,9 +1,10 @@
 import { ChangeDetectionStrategy, Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { FormBuilder, FormGroup, Validators} from '@angular/forms';
-import { Router } from '@angular/router';
 
 import { AuthService } from './auth.service';
 import { CustomValidators } from '@shared/services';
+import {BehaviorSubject} from 'rxjs';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -15,14 +16,20 @@ export class AuthComponent implements OnInit {
 
   public frmSignUp: FormGroup;
   public frmLogin: FormGroup;
-  isLogInMode = false;
-  hide: true;
-  hideCheck: true;
-  hideLogin: true;
 
-  constructor(private authService: AuthService, private cd: ChangeDetectorRef, private router: Router, private fb: FormBuilder) {
-    this.frmSignUp = this.createSignUpForm();
-    this.frmLogin = this.createLoginForm();
+  isLogInMode = true;
+
+  hide = true;
+  hideCheck = true;
+  hideLogin = true;
+
+  errorUpdate = new BehaviorSubject(null);
+
+  constructor(
+    private authService: AuthService,
+    private cd: ChangeDetectorRef,
+    private fb: FormBuilder,
+    private router: Router) {
   }
 
   createSignUpForm(): FormGroup {
@@ -75,16 +82,17 @@ export class AuthComponent implements OnInit {
     );
   }
 
-/*  signUpForm: FormGroup;*/
-
-
   ngOnInit() {
+    this.frmSignUp = this.createSignUpForm();
+    this.frmLogin = this.createLoginForm();
+    this.cd.markForCheck();
   }
 
   onSwitchMode() {
     this.isLogInMode = !this.isLogInMode;
     this.frmLogin.reset();
     this.frmSignUp.reset();
+    this.errorUpdate.next(null);
   }
 
   logIn() {
@@ -97,10 +105,8 @@ export class AuthComponent implements OnInit {
         this.router.navigate(['/home']);
       },
       error => {
-        console.log(error);
+        this.errorUpdate.next(error.error.message);
       });
-    this.frmLogin.reset();
-    console.log(this.frmLogin.value);
   }
 
   signUp() {
@@ -114,10 +120,8 @@ export class AuthComponent implements OnInit {
         this.router.navigate(['/home']);
       },
       error => {
-        console.log(error);
+        this.errorUpdate.next(error.error.message);
       });
-    this.frmSignUp.reset();
-    console.log(this.frmSignUp.value);
   }
 }
 

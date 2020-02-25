@@ -138,11 +138,12 @@ const trousersData = {
 
 const users = JSON.parse(localStorage.getItem('users')) || [];
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 
 export class BackendInterceptor implements HttpInterceptor {
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    console.log('Loaded from http call :' + request.url);
     const { url, method, body } = request;
 
     return of(null)
@@ -150,7 +151,6 @@ export class BackendInterceptor implements HttpInterceptor {
       .pipe(materialize())
       .pipe(delay(200))
       .pipe(dematerialize());
-
 
     function handleRoute() {
       switch (true) {
@@ -180,24 +180,31 @@ export class BackendInterceptor implements HttpInterceptor {
       const { email, password } = body;
       const user = users.find(x => x.email === email && x.password === password);
       if (!user) {
-        return error('Username or password is incorrect');
+        return error('Username or/and password is/are incorrect!');
       } else {
         return ok({
-          token: `fake-jwt-token${user.id}`
+          id: user.id,
+          email: user.email,
+          token: user.token,
+          name: user.name
           });
         }
     }
 
     function signup() {
-      const { email, password } = body;
-      const user = users.find(x => x.email === email);
+      const newUserEmail  = body;
+      console.log(body);
+      const user = users.find(x => x.email === newUserEmail.email);
       if (!user) {
-        body.id = users.length ? Math.max(...users.map(x => x.id)) + 1 : 1;
-        users.push(body);
-        console.log(users);
+        newUserEmail.id = users.length ? users.length + 1 : 1;
+        newUserEmail.token = 'fake-jwt-token' + newUserEmail.id;
+        users.push(newUserEmail);
         localStorage.setItem('users', JSON.stringify(users));
+        /*localStorage.setItem('users', JSON.stringify(users));*/
         return ok({
-          token: `fake-jwt-token${body.id}`
+          id: newUserEmail.id,
+          email: newUserEmail.email,
+          token: newUserEmail.token
         });
       } else {
         return error('Username is already registered');

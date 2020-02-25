@@ -14,3 +14,7 @@ ul>li {
 .navbar {
   font-family: 'Open Sans', sans-serif;
 }
+
+.log-out {
+  cursor: pointer;
+}

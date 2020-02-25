@@ -2,8 +2,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { AccessoriesComponent } from './accessories.component';
-import { AccessoriesRoutingComponent } from './accessories-routing.module';
-import { ProductItemModule, SpinnerModule } from '@shared/components';
+import { AccessoriesRoutingModule } from './accessories-routing.module';
+import { ProductsModule, SpinnerModule, ProductItemModule } from '@shared/components';
 import { AccessoriesService } from './accessories.service';
 
 @NgModule({
@@ -12,9 +12,10 @@ import { AccessoriesService } from './accessories.service';
   ],
   imports: [
     CommonModule,
-    AccessoriesRoutingComponent,
-    ProductItemModule,
-    SpinnerModule
+    AccessoriesRoutingModule,
+    ProductsModule,
+    SpinnerModule,
+    ProductItemModule
   ],
   exports: [
     AccessoriesComponent
