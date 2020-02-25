@@ -1,43 +1,65 @@
-import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable, Subject } from 'rxjs';
-import { tap } from 'rxjs/operators';
+import {Injectable} from '@angular/core';
+import {HttpClient} from '@angular/common/http';
+import {Observable, BehaviorSubject, throwError, Subject, ReplaySubject} from 'rxjs';
+import {tap} from 'rxjs/operators';
 
-import { User } from './user.model';
+import {User} from './user.model';
+import {Router} from '@angular/router';
 
-@Injectable()
+
+@Injectable({
+  providedIn: 'root',
+})
 
 export class AuthService {
   private loginJsonUrl = '/login';
   private signupJsonUrl = '/signup';
-  userSub = new Subject<User>();
+  public currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {
+  }
 
-  login(email: string, password: string): Observable<any> {
-    return this.http.post(this.loginJsonUrl,
+  afterLogin() {
+    const loggedUser = localStorage.getItem('currentUser');
+    if (loggedUser) {
+      this.currentUserSubject.next(JSON.parse(loggedUser));
+    }
+  }
+
+  login(email: string, password: string): Observable<User> {
+    return this.http.post<User>(this.loginJsonUrl,
       {
         email,
-        password})
-      .pipe(tap(resData => {
-        this.handleAuthentication(resData.name, resData.email, resData.id, resData.token);
+        password
+      })
+      .pipe(tap(data => {
+          localStorage.setItem('currentUser', JSON.stringify(data));
+          return this.currentUserSubject.next(data);
+        },
+        validationError => {
+          throwError(validationError);
         })
       );
   }
 
-  signup(name: string, email: string, password: string): Observable<any> {
-    return this.http.post(this.signupJsonUrl,
+  logOut() {
+    localStorage.removeItem('currentUser');
+    this.currentUserSubject.next(null);
+  }
+
+  signup(name: string, email: string, password: string): Observable<User> {
+    return this.http.post<User>(this.signupJsonUrl,
       {
         name,
         email,
-        password})
+        password
+      })
       .pipe(tap(resData => {
-          this.handleAuthentication(resData.name, resData.email, resData.id, resData.token);
-        })
-      );
-  }
-  private handleAuthentication(name: string, email: string, id: string, token: string) {
-    const user = new User(name, email, id, token);
-    this.userSub.next(user);
+          localStorage.setItem('currentUser', JSON.stringify(resData));
+          console.log(resData);
+        },
+        validationError => {
+          throwError(validationError);
+        }));
   }
 }

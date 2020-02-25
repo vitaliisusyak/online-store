@@ -5,6 +5,6 @@ import { RouterModule, Routes } from '@angular/router';
 const routes: Routes = [{
   path: '',
   component: AccessoriesComponent
-}]
+}];
 
-export const AccessoriesRoutingComponent: ModuleWithProviders = RouterModule.forChild(routes);
+export const AccessoriesRoutingModule: ModuleWithProviders = RouterModule.forChild(routes);

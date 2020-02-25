@@ -7,13 +7,12 @@
     </mat-card-header>
 
     <form class="from-form" [formGroup]="frmSignUp" *ngIf="!isLogInMode">
-
       <mat-card-content>
         <div>
           <mat-form-field class="form-full-width">
             <input matInput placeholder="First Name"
                  id="name"
-                 name="name"
+                 name="name123"
                  type="text"
                  formControlName="name"/>
             <mat-error *ngIf="frmSignUp.get('name').hasError('required')">
@@ -84,7 +83,7 @@
                 [disabled]="frmSignUp.invalid"
         >Sign up</button>
       </mat-card-actions>
-
+      <div *ngIf="errorUpdate" class="has-error">{{ errorUpdate | async }}</div>
     </form>
 
     <form class="from-form" [formGroup]="frmLogin" *ngIf="isLogInMode">
@@ -130,6 +129,7 @@
                 (click)="logIn()"
         >Sign in</button>
       </mat-card-actions>
+      <div *ngIf="errorUpdate" class="has-error">{{ errorUpdate | async }}</div>
 
     </form>
 
