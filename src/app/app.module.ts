@@ -10,7 +10,6 @@ import { HeaderComponent } from './header/header.component';
 import { AppRoutingModule } from './app-routing.module';
 import { SpinnerModule } from '@shared/components';
 import { BackendInterceptor } from '@shared/services/backendInterceptor';
-import { AuthService } from './pages/auth/auth.service';
 import { PageNotFoundComponent } from '@shared/components/page-not-found/page-not-found.component';
 import { MatButtonModule } from "@angular/material/button";
 
@@ -34,9 +33,7 @@ import { MatButtonModule } from "@angular/material/button";
     provide: HTTP_INTERCEPTORS,
     useClass: BackendInterceptor,
     multi: true
-  },
-    AuthService
-  ],
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

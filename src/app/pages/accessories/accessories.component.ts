@@ -1,5 +1,4 @@
 import { ChangeDetectionStrategy, Component, OnInit, ChangeDetectorRef } from '@angular/core';
-import {ActivatedRoute, Router} from "@angular/router";
 
 import { AccessoriesService } from './accessories.service';
 import { BaseComponent } from '@shared/components';
@@ -16,9 +15,7 @@ export class AccessoriesComponent extends BaseComponent implements OnInit {
 
 
   constructor(private accessoriesService: AccessoriesService,
-              private cd: ChangeDetectorRef,
-              private router: Router,
-              private route: ActivatedRoute) {
+              private cd: ChangeDetectorRef) {
     super();
   }
 

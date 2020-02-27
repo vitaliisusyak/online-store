@@ -11,11 +11,7 @@ const routes: Routes = [{
   {
     path: ':id',
     component: AccessoryComponent
-  },
-  {
-    path: ':**',
-    redirectTo: ''
-  },
+  }
 ];
 
 export const AccessoriesRoutingModule: ModuleWithProviders = RouterModule.forChild(routes);

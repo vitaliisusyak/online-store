@@ -6,7 +6,6 @@ import { AccessoriesComponent } from './accessories.component';
 import { AccessoriesRoutingModule } from './accessories-routing.module';
 import { ProductsModule, SpinnerModule } from '@shared/components';
 import { AccessoriesService } from './accessories.service';
-import {RouterModule} from "@angular/router";
 import { AccessoryComponent } from './accessory/accessory.component';
 
 @NgModule({
@@ -19,7 +18,6 @@ import { AccessoryComponent } from './accessory/accessory.component';
     AccessoriesRoutingModule,
     ProductsModule,
     SpinnerModule,
-    RouterModule,
     MatButtonModule
   ],
   exports: [
