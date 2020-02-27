@@ -1,0 +1,32 @@
+.container {
+  margin-top: 3em;
+}
+
+.product-image {
+  width: 100%;
+}
+
+.single-product-name {
+  font-size: 28px;
+  text-transform: capitalize;
+  font-weight: 900;
+  margin-bottom: 15px;
+}
+
+.price {
+  font-size: 22px;
+  font-weight: 900;
+  line-height: 30px;
+  color: #673ab7;
+  margin-bottom: 20px;
+}
+
+.product-info {
+  padding-bottom: 10px;
+  margin-bottom: 15px;
+  border-bottom: 1px solid #ebebeb;
+}
+
+.add-to-card-button {
+  width: 30%;
+}

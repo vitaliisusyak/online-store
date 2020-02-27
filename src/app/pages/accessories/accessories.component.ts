@@ -1,8 +1,9 @@
 import { ChangeDetectionStrategy, Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import {ActivatedRoute, Router} from "@angular/router";
 
 import { AccessoriesService } from './accessories.service';
 import { BaseComponent } from '@shared/components';
-import { IProduct } from '@shared/interfaces/product-interface'
+
 
 @Component({
   selector: 'app-accessories',
@@ -11,9 +12,13 @@ import { IProduct } from '@shared/interfaces/product-interface'
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AccessoriesComponent extends BaseComponent implements OnInit {
-  accessories: IProduct;
+  private accessories;
 
-  constructor(private accessoriesService: AccessoriesService, private cd: ChangeDetectorRef) {
+
+  constructor(private accessoriesService: AccessoriesService,
+              private cd: ChangeDetectorRef,
+              private router: Router,
+              private route: ActivatedRoute) {
     super();
   }
 
@@ -21,7 +26,6 @@ export class AccessoriesComponent extends BaseComponent implements OnInit {
     this.showSpinner = true;
     this.accessoriesService.getJSON().subscribe(data => {
       this.accessories = data.accessories;
-      console.log(this.accessories);
       this.showSpinner = false;
       this.cd.markForCheck();
     });
