@@ -2,17 +2,18 @@
   border-radius: 0;
 }
 
+.navbar {
+  font-family: 'Open Sans', sans-serif;
+}
+
 ul>li {
   text-align: center;
   font-size: 1.2em;
 }
 
-.icons li {
-  float: right;
-}
-
-.navbar {
-  font-family: 'Open Sans', sans-serif;
+.icons, .authenticated {
+  display: flex;
+  justify-content: flex-end;
 }
 
 .log-out {
