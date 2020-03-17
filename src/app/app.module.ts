@@ -12,12 +12,16 @@ import { SpinnerModule } from '@shared/components';
 import { BackendInterceptor } from '@shared/services/backendInterceptor';
 import { PageNotFoundComponent } from '@shared/components/page-not-found/page-not-found.component';
 import { MatButtonModule } from "@angular/material/button";
+import { UserComponent } from './pages/user/user.component';
+import {MatTableModule} from "@angular/material/table";
+import {MatIconModule} from "@angular/material/icon";
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     PageNotFoundComponent,
+    UserComponent,
   ],
   imports: [
     BrowserModule,
@@ -27,7 +31,9 @@ import { MatButtonModule } from "@angular/material/button";
     HttpClientModule,
     MatProgressSpinnerModule,
     SpinnerModule,
-    MatButtonModule
+    MatButtonModule,
+    MatTableModule,
+    MatIconModule
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,

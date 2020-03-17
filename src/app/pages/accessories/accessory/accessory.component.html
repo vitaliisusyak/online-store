@@ -1,5 +1,5 @@
 <div class="container">
-  <ng-container *ngIf="product$ | async as product; else loading" class="row">
+  <ng-container *ngIf="product; else loading" class="row">
     <div class="col-md-5">
       <div class="product-details-image">
         <img [src]="product.image" [alt]="product.name" class="product-image">
@@ -9,7 +9,7 @@
       <div class="product-details">
         <h1 class="single-product-name" [textContent]="product.name"></h1>
         <div class="price">
-          <span [textContent]="product.price"></span>
+          <span [textContent]="product.price | currency"></span>
         </div>
         <div class="product-info">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
           Ipsum has been the industry's standard dummy
@@ -21,7 +21,11 @@
           PageMaker including versions of Lorem Ipsum.
         </div>
         <div class="single-product-action">
-          <button mat-raised-button color="primary" type="button" class="add-to-card-button">ADD TO CARD</button>
+          <button mat-raised-button
+                  color="primary"
+                  type="button"
+                  class="add-to-card-button"
+                  (click)="addProductToBasket(product)">ADD TO CARD</button>
         </div>
       </div>
     </div>

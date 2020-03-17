@@ -1,9 +1,11 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {Observable, BehaviorSubject, throwError } from 'rxjs';
+import {Observable, BehaviorSubject, throwError} from 'rxjs';
 import {tap} from 'rxjs/operators';
 
 import {User} from './user.model';
+import {ActivatedRoute, Router} from "@angular/router";
+
 
 @Injectable({
   providedIn: 'root',
@@ -14,7 +16,9 @@ export class AuthService {
   private signupJsonUrl = '/signup';
   public currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient,
+              private router: Router,
+              private route: ActivatedRoute) {
   }
 
   afterLogin() {
@@ -43,6 +47,7 @@ export class AuthService {
   logOut() {
     localStorage.removeItem('currentUser');
     this.currentUserSubject.next(null);
+    this.router.navigate(['/']);
   }
 
   signup(name: string, email: string, password: string): Observable<User> {

@@ -1,0 +1,54 @@
+table {
+  width: 100%;
+}
+
+tr.mat-footer-row {
+  font-weight: bold;
+}
+
+.naming-header {
+  padding-left: 24px;
+  font-size: 18px;
+  font-family: "Open Sans", "Helvetica Neue", sans-serif;
+  background-color: whitesmoke;
+}
+
+.second-header-cell {
+  border-bottom: 1px solid whitesmoke;
+}
+
+.product-image {
+  width: 240px;
+}
+
+.product-image img {
+  max-width: 100px;
+}
+
+.mat-cell {
+  padding: 1.1em 0;
+}
+
+.remove-item {
+  text-align: center;
+}
+
+.checkout-button {
+  text-align: end;
+}
+
+.mat-footer-row {
+  height: 4.5em;
+}
+
+.add-to-card-button {
+  width: 50%;
+}
+
+.icon-button {
+  cursor: pointer;
+}
+
+.icon-button:hover {
+  color: #673ab7;
+}

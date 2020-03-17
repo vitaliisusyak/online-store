@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
 @Injectable()
 
 export class ShirtsService {
-  private jsonURL = 'http://localhost:4200/shirts';
+  private jsonURL = 'some';
 
   constructor(private http: HttpClient) {
   }

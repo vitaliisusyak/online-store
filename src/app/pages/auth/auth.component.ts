@@ -102,7 +102,7 @@ export class AuthComponent implements OnInit {
     this.authService.login(email, password).subscribe(
       data => {
         console.log(data);
-        this.router.navigate(['/home']);
+        this.router.navigate(['/']);
       },
       error => {
         this.errorUpdate.next(error.error.message);
@@ -117,7 +117,7 @@ export class AuthComponent implements OnInit {
     this.authService.signup(name, email, password).subscribe(
       data => {
         console.log(data);
-        this.router.navigate(['/home']);
+        this.router.navigate(['/']);
       },
       error => {
         this.errorUpdate.next(error.error.message);
