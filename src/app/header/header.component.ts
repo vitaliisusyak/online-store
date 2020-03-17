@@ -1,14 +1,10 @@
-import {
-  ChangeDetectionStrategy,
-  ChangeDetectorRef,
-  Component,
-  OnDestroy,
-  OnInit
-} from '@angular/core';
+import {ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit} from '@angular/core';
 
 import {Subscription} from 'rxjs';
-import { AuthService } from '../pages/auth/auth.service';
+import {AuthService} from '../pages/auth/auth.service';
 import {UserProductsService} from '@shared/services/user-products.service';
+import {switchMap} from 'rxjs/operators';
+import {IProduct} from '@shared/interfaces/product-interface';
 
 @Component({
   selector: 'app-header',
@@ -33,14 +29,18 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.currentUserSubscription = this.authService.currentUserSubject.subscribe(user => {
       if (user) {
         this.currentUser = user;
-        this.productsInBasketCounter = 1;
       } else {
         this.currentUser = null;
       }
     });
-    // Products in basket counter
-    this.productsInBasketSubscription = this.productsService.productsInBasket$.subscribe(counter => {
-      this.productsInBasketCounter = counter;
+    // Get count of products in bag
+    this.productsService.productsInBasket$
+      .pipe(
+        switchMap(() => {
+          return this.productsService.getUserProductsBasket();
+        })
+      ).subscribe((productsBasket: IProduct[]) => {
+      this.productsInBasketCounter = productsBasket.length;
       this.cd.markForCheck();
     });
   }

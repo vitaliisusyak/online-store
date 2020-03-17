@@ -300,11 +300,13 @@ export class BackendInterceptor implements HttpInterceptor {
     function removeProductFromBasket() {
       const userBasketName = headers.get('userBasketName');
       const productId = headers.get('productId');
+      const productName = headers.get('productName');
+
       const productsBasketArray = JSON.parse(localStorage.getItem(userBasketName));
-      const updatedProductsBasketArray = productsBasketArray.filter(product => product.id !== +productId);
+      const updatedProductsBasketArray = productsBasketArray.filter(product => product.id !== +productId || product.name !== productName);
       if (updatedProductsBasketArray) {
         localStorage.setItem(userBasketName, JSON.stringify(updatedProductsBasketArray));
-        return ok(updatedProductsBasketArray)
+        return ok(updatedProductsBasketArray);
       } else {
         return error('Something went wrong!');
       }
