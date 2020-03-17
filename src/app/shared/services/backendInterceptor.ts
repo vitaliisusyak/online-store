@@ -124,7 +124,7 @@ const trousersData = {
     {
       id: 3,
       name: 'trouser3',
-      price: '1zxczxc4 UA',
+      price: 24,
       image: '/assets/trousers/product3.jpg'
     },
     {
@@ -155,22 +155,34 @@ export class BackendInterceptor implements HttpInterceptor {
 
     function handleRoute() {
       switch (true) {
+        // Login an Sign Up
         case url.endsWith('/login') && method === 'POST':
           return login();
         case url.endsWith('/signup') && method === 'POST':
           return signup();
+        // Get all products
         case url.endsWith('accessories') && method === 'GET':
           return of(new HttpResponse({status: 200, body: accessoriesData}));
-        case url.includes('accessories/') && method === 'GET':
-          return getProductById();
         case url.endsWith('/jackets') && method === 'GET':
           return of(new HttpResponse({status: 200, body: jacketsData}));
-        case url.endsWith('some'):
+        case url.endsWith('/shirts'):
           return of(new HttpResponse({status: 200, body: shirtsData}));
         case url.endsWith('/suits'):
           return of(new HttpResponse({status: 200, body: suitsData}));
         case url.endsWith('/trousers'):
           return of(new HttpResponse({status: 200, body: trousersData}));
+        // Get product by ID
+        case url.includes('accessories/') && method === 'GET':
+          return getProductById();
+        case url.includes('jackets/') && method === 'GET':
+          return getProductById();
+        case url.includes('suits/') && method === 'GET':
+          return getProductById();
+        case url.includes('trousers/') && method === 'GET':
+          return getProductById();
+        case url.includes('shirts/') && method === 'GET':
+          return getProductById();
+        // Get, Add, Remove products from user basket
         case url.endsWith('addProducts') && method === 'POST':
           return addProductToUserBasket();
         case url.endsWith('getProducts') && method === 'GET':
@@ -221,12 +233,44 @@ export class BackendInterceptor implements HttpInterceptor {
     }
 
     function getProductById() {
-      let id = +url.split('/')[1];
-      let accessory = accessoriesData.accessories.filter(accessory => accessory.id == id)[0];
-      if (accessory) {
-        return ok(accessory)
-      } else {
-        return error('There is no such product!')
+      const id = +url.split('/')[1];
+      const productCategory = url.split('/')[0];
+      switch (true) {
+        case productCategory === 'accessories':
+          const accessory = accessoriesData.accessories.filter(item => item.id === id)[0];
+          if (accessory) {
+            return ok(accessory);
+          } else {
+            return error('There is no such product!');
+          }
+        case productCategory === 'jackets':
+          const jacket = jacketsData.jackets.filter(item => item.id === id)[0];
+          if (jacket) {
+            return ok(jacket);
+          } else {
+            return error('There is no such product!');
+          }
+        case productCategory === 'suits':
+          const suit = suitsData.suits.filter(item => item.id === id)[0];
+          if (suit) {
+            return ok(suit);
+          } else {
+            return error('There is no such product!');
+          }
+        case productCategory === 'shirts':
+          const shirt = shirtsData.shirts.filter(item => item.id === id)[0];
+          if (shirt) {
+            return ok(shirt);
+          } else {
+            return error('There is no such product!');
+          }
+        case productCategory === 'trousers':
+          const trouser = trousersData.trousers.filter(item => item.id === id)[0];
+          if (trouser) {
+            return ok(trouser);
+          } else {
+            return error('There is no such product!');
+          }
       }
     }
 

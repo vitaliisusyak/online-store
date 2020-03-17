@@ -15,9 +15,4 @@ export class AccessoriesService {
   getJSON(): Observable<any> {
     return this.http.get(this.jsonURL);
   }
-
-  getProductById(id: number): Observable<any> {
-    return this.http.get(this.jsonURL + '/' + id);
-  }
-
 }

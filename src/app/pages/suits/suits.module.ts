@@ -9,7 +9,7 @@ import { SuitsService } from './suits.service';
 
 @NgModule({
    declarations: [
-     SuitsComponent,
+     SuitsComponent
    ],
   imports: [
     CommonModule,

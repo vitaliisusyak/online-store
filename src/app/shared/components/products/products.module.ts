@@ -5,21 +5,26 @@ import { MatButtonModule, MatInputModule, MatIconModule } from '@angular/materia
 
 import { ProductsComponent } from './products.component';
 import { SearchPipe} from '@shared/pipes';
+import { ProductPageComponent } from '@shared/components/product-page/product-page.component';
+import {SpinnerModule} from '../spinner/spinner-module';
 
 @NgModule ({
   declarations: [
     ProductsComponent,
-    SearchPipe
+    SearchPipe,
+    ProductPageComponent
   ],
   imports: [
     CommonModule,
     FormsModule,
     MatInputModule,
     MatIconModule,
-    MatButtonModule
+    MatButtonModule,
+    SpinnerModule
   ],
   exports: [
-    ProductsComponent
+    ProductsComponent,
+    ProductPageComponent
   ]
 })
 

@@ -18,6 +18,6 @@ export class ProductsComponent implements OnInit {
   }
 
   gotToProduct(id: number) {
-    this.router.navigate([id], {relativeTo: this.route})
+    this.router.navigate([id], {relativeTo: this.route});
   }
 }
