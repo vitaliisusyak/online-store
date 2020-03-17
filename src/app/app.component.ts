@@ -1,6 +1,6 @@
-import {Component, DoCheck, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
-import { Location } from '@angular/common';
-import { Router } from '@angular/router';
+import {Component, OnInit} from '@angular/core';
+import {Location} from '@angular/common';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-root',

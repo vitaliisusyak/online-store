@@ -1,10 +1,10 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {Observable, BehaviorSubject, throwError} from 'rxjs';
+import {BehaviorSubject, Observable, throwError} from 'rxjs';
 import {tap} from 'rxjs/operators';
 
 import {User} from './user.model';
-import {ActivatedRoute, Router} from "@angular/router";
+import {ActivatedRoute, Router} from '@angular/router';
 
 
 @Injectable({
@@ -12,9 +12,9 @@ import {ActivatedRoute, Router} from "@angular/router";
 })
 
 export class AuthService {
+  public currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
   private loginJsonUrl = '/login';
   private signupJsonUrl = '/signup';
-  public currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
 
   constructor(private http: HttpClient,
               private router: Router,

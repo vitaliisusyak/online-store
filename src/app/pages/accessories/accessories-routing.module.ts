@@ -7,7 +7,7 @@ import {ProductPageComponent} from '@shared/components';
 const routes: Routes = [{
   path: '',
   component: AccessoriesComponent
-  },
+},
   {
     path: ':id',
     component: ProductPageComponent

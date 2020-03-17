@@ -1,7 +1,7 @@
-import { ChangeDetectionStrategy, Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import {ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit} from '@angular/core';
 
-import { AccessoriesService } from './accessories.service';
-import { BaseComponent } from '@shared/components';
+import {AccessoriesService} from './accessories.service';
+import {BaseComponent} from '@shared/components';
 
 
 @Component({

@@ -1,7 +1,7 @@
-import { ModuleWithProviders } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import {ModuleWithProviders} from '@angular/core';
+import {RouterModule, Routes} from '@angular/router';
 
-import { JacketsComponent } from './jackets.component';
+import {JacketsComponent} from './jackets.component';
 import {ProductPageComponent} from '@shared/components/product-page/product-page.component';
 
 const routes: Routes = [{
@@ -13,4 +13,4 @@ const routes: Routes = [{
     component: ProductPageComponent
   }];
 
-export const  JacketsRoutingModule: ModuleWithProviders = RouterModule.forChild(routes);
+export const JacketsRoutingModule: ModuleWithProviders = RouterModule.forChild(routes);

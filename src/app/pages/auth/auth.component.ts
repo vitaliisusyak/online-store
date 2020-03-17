@@ -1,8 +1,8 @@
-import { ChangeDetectionStrategy, Component, OnInit, ChangeDetectorRef } from '@angular/core';
-import { FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {ChangeDetectionStrategy, Component, OnInit, ChangeDetectorRef} from '@angular/core';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
-import { AuthService } from './auth.service';
-import { CustomValidators } from '@shared/services';
+import {AuthService} from './auth.service';
+import {CustomValidators} from '@shared/services';
 import {BehaviorSubject} from 'rxjs';
 import {Router} from '@angular/router';
 
@@ -34,31 +34,31 @@ export class AuthComponent implements OnInit {
 
   createSignUpForm(): FormGroup {
     return this.fb.group({
-      name: [
-        null,
-        Validators.required
-      ],
-      email: [
-        null,
-        [
-          Validators.required,
-          Validators.email
+        name: [
+          null,
+          Validators.required
+        ],
+        email: [
+          null,
+          [
+            Validators.required,
+            Validators.email
+          ]
+        ],
+        password: [
+          null,
+          [
+            Validators.required,
+            CustomValidators.patternValidator(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/, {
+              hasError: true
+            })
+          ]
+        ],
+        confirmPassword: [
+          null,
+          Validators.required
         ]
-      ],
-      password: [
-        null,
-        [
-          Validators.required,
-          CustomValidators.patternValidator(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/, {
-            hasError: true
-          })
-        ]
-      ],
-      confirmPassword: [
-        null,
-        Validators.required
-      ]
-    },
+      },
       {
         validator: CustomValidators.passwordMatchValidator
       }

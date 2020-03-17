@@ -1,7 +1,7 @@
-import { RouterModule, Routes } from '@angular/router';
-import { ModuleWithProviders } from '@angular/core';
+import {RouterModule, Routes} from '@angular/router';
+import {ModuleWithProviders} from '@angular/core';
 
-import { TrousersComponent } from './trousers.component';
+import {TrousersComponent} from './trousers.component';
 import {ProductPageComponent} from '@shared/components';
 
 const routes: Routes = [{

@@ -1,16 +1,16 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
 
-import { SuitsComponent } from './suits.component';
-import { SuitsRoutingComponent } from './suits-routing.module';
-import { ProductsModule, SpinnerModule } from '@shared/components';
-import { SuitsService } from './suits.service';
+import {SuitsComponent} from './suits.component';
+import {SuitsRoutingComponent} from './suits-routing.module';
+import {ProductsModule, SpinnerModule} from '@shared/components';
+import {SuitsService} from './suits.service';
 
 
 @NgModule({
-   declarations: [
-     SuitsComponent
-   ],
+  declarations: [
+    SuitsComponent
+  ],
   imports: [
     CommonModule,
     SuitsRoutingComponent,
@@ -24,4 +24,5 @@ import { SuitsService } from './suits.service';
     SuitsService
   ]
 })
-export class SuitsModule {}
+export class SuitsModule {
+}
