@@ -144,7 +144,7 @@ const users = JSON.parse(localStorage.getItem('users')) || [];
 
 export class BackendInterceptor implements HttpInterceptor {
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    console.log(request);
+    // console.log(request);
     const { url, method, body, headers } = request;
 
     return of(null)
