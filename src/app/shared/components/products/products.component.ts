@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
   selector: 'app-products',
@@ -10,8 +11,13 @@ export class ProductsComponent implements OnInit {
   @Input() products: object;
   searchResult: string;
 
-  constructor() { }
+  constructor(private route: ActivatedRoute,
+              private router: Router) { }
 
   ngOnInit() {
+  }
+
+  gotToProduct(id: number) {
+    this.router.navigate([id], {relativeTo: this.route})
   }
 }

@@ -12,24 +12,24 @@ const accessoriesData = {
       image: '/assets/accessories/product1.jpg'
     },
     {
-      id: 1,
+      id: 2,
       name: 'accesorie2',
       price: '1dsz4 UA',
       image: '/assets/accessories/product2.jpg'
     },
     {
-      id: 1,
+      id: 3,
       name: 'accesorie2',
       price: '1zxczxc4 UA',
       image: '/assets/accessories/product3.jpg'
     },
     {
-      id: 1,
+      id: 4,
       name: 'accesorie4',
       price: '1234 UA',
       image: '/assets/accessories/product4.jpg'
     }
-  ],
+  ]
 };
 
 const jacketsData = {
@@ -41,13 +41,13 @@ const jacketsData = {
       image: '/assets/jackets/product1.jpg'
     },
     {
-      id: 1,
+      id: 2,
       name: 'jacket2',
       price: '1234 UA',
       image: '/assets/jackets/product2.jpg'
     },
     {
-      id: 1,
+      id: 3,
       name: 'jacket3',
       price: '1234 UA',
       image: '/assets/jackets/product3.jpg'
@@ -64,19 +64,19 @@ const shirtsData = {
       image: '/assets/shirts/product1.jpg'
     },
     {
-      id: 1,
+      id: 2,
       name: 'shirt2',
       price: '1dsz4 UA',
       image: '/assets/shirts/product2.jpg'
     },
     {
-      id: 1,
+      id: 3,
       name: 'shirt3',
       price: '1zxczxc4 UA',
       image: '/assets/shirts/product3.jpg'
     },
     {
-      id: 1,
+      id: 4,
       name: 'shirt4',
       price: '1234 UA',
       image: '/assets/shirts/product4.jpg'
@@ -93,13 +93,13 @@ const suitsData = {
       image: '/assets/suits/product1.jpg'
     },
     {
-      id: 1,
+      id: 2,
       name: 'suit2',
       price: '1dsz4 UA',
       image: '/assets/suits/product2.jpg'
     },
     {
-      id: 1,
+      id: 3,
       name: 'suit3',
       price: '1zxczxc4 UA',
       image: '/assets/suits/product3.jpg'
@@ -116,19 +116,19 @@ const trousersData = {
       image: '/assets/trousers/product1.jpg'
     },
     {
-      id: 1,
+      id: 2,
       name: 'trouser2',
       price: '1dsz4 UA',
       image: '/assets/trousers/product2.jpg'
     },
     {
-      id: 1,
+      id: 3,
       name: 'trouser3',
       price: '1zxczxc4 UA',
       image: '/assets/trousers/product3.jpg'
     },
     {
-      id: 1,
+      id: 4,
       name: 'trouser4',
       price: '1234 UA',
       image: '/assets/trousers/product4.jpg'
@@ -145,6 +145,7 @@ const users = JSON.parse(localStorage.getItem('users')) || [];
 export class BackendInterceptor implements HttpInterceptor {
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     const { url, method, body } = request;
+    console.log(request);
 
     return of(null)
       .pipe(mergeMap(handleRoute))
@@ -158,8 +159,10 @@ export class BackendInterceptor implements HttpInterceptor {
           return login();
         case url.endsWith('/signup') && method === 'POST':
           return signup();
-        case url.endsWith('/accessories') && method === 'GET':
+        case url.endsWith('accessories') && method === 'GET':
           return of(new HttpResponse({status: 200, body: accessoriesData}));
+        case url.includes('accessories/') && method === 'GET':
+          return getProductById();
         case url.endsWith('/jackets') && method === 'GET':
           return of(new HttpResponse({status: 200, body: jacketsData}));
         case url.endsWith('/shirts'):
@@ -200,7 +203,6 @@ export class BackendInterceptor implements HttpInterceptor {
         newUserEmail.token = 'fake-jwt-token' + newUserEmail.id;
         users.push(newUserEmail);
         localStorage.setItem('users', JSON.stringify(users));
-        /*localStorage.setItem('users', JSON.stringify(users));*/
         return ok({
           id: newUserEmail.id,
           email: newUserEmail.email,
@@ -208,6 +210,16 @@ export class BackendInterceptor implements HttpInterceptor {
         });
       } else {
         return error('Username is already registered');
+      }
+    }
+
+    function getProductById() {
+      let id = +url.split('/')[1];
+      let accessory = accessoriesData.accessories.filter(accessory => accessory.id == id)[0];
+      if (accessory) {
+        return ok(accessory)
+      } else {
+        return error('There is no such product!')
       }
     }
 

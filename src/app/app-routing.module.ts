@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import {Routes, RouterModule, PreloadAllModules} from '@angular/router';
+import { PageNotFoundComponent } from "@shared/components/page-not-found/page-not-found.component";
 
 const routes: Routes = [
   {
@@ -31,8 +32,12 @@ const routes: Routes = [
     loadChildren: () => import('./pages/auth/auth.module').then(mod => mod.AuthModule)
   },
   {
+    path: 'page-not-found',
+    component: PageNotFoundComponent
+  },
+  {
     path: '**',
-    redirectTo: ''
+    redirectTo: 'page-not-found'
   }
 ];
 

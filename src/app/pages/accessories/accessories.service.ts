@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 
 export class AccessoriesService {
 
-  private jsonURL = 'http://localhost:4200/accessories';
+  private jsonURL = 'accessories';
 
   constructor(private http: HttpClient) {
   }
@@ -15,4 +15,9 @@ export class AccessoriesService {
   getJSON(): Observable<any> {
     return this.http.get(this.jsonURL);
   }
+
+  getProductById(id: number): Observable<any> {
+    return this.http.get(this.jsonURL + '/' + id);
+  }
+
 }
