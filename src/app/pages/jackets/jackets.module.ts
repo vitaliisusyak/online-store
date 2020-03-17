@@ -14,7 +14,7 @@ import {JacketsService} from './jackets.service';
     CommonModule,
     JacketsRoutingModule,
     ProductsModule,
-    SpinnerModule
+    SpinnerModule,
   ],
   exports: [
     JacketsComponent

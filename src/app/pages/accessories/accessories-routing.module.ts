@@ -2,7 +2,7 @@ import {ModuleWithProviders} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 
 import {AccessoriesComponent} from './accessories.component';
-import {AccessoryComponent} from "./accessory/accessory.component";
+import {ProductPageComponent} from '@shared/components';
 
 const routes: Routes = [{
   path: '',
@@ -10,7 +10,7 @@ const routes: Routes = [{
   },
   {
     path: ':id',
-    component: AccessoryComponent
+    component: ProductPageComponent
   }
 ];
 
