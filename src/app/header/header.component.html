@@ -12,12 +12,23 @@
     </ul>
     <ul class="nav navbar-nav col-lg-2 icons">
       <ul *ngIf="currentUser" class="nav navbar-nav authenticated">
-        <li routerLinkActive="active" >
-          <a routerLink="/user">{{ currentUser.name }}</a>
+        <li>
+          <a routerLink="/user-basket">
+            <i class="glyphicon glyphicon-shopping-cart"
+               [matBadge]="productsInBasketCounter"
+               [matBadgeHidden]="!productsInBasketCounter"
+               matBadgeColor="primary"
+               matBadgeSize="small"
+               matBadgePosition="above after">
+            </i>
+          </a>
         </li>
+        <!--<li routerLinkActive="active" >
+          <a routerLink="/user">{{ currentUser.name }}</a>
+        </li>-->
         <li>
           <a title="Log Out" (click)="logOut()" class="log-out">
-            <i class="glyphicon glyphicon-log-out" ></i>
+            <i class="glyphicon glyphicon-log-out"></i>
           </a>
         </li>
         <li></li>

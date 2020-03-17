@@ -1,9 +1,11 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpHeaders} from "@angular/common/http";
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 
-import {AuthService} from "../../pages/auth/auth.service";
-import {Router} from "@angular/router";
-import {IProduct} from "@shared/interfaces/product-interface";
+import {AuthService} from '../../pages/auth/auth.service';
+import {Router} from '@angular/router';
+import {IProduct} from '@shared/interfaces/product-interface';
+import {BehaviorSubject} from 'rxjs';
+import {tap} from 'rxjs/operators';
 
 
 @Injectable({
@@ -16,40 +18,52 @@ export class UserProductsService {
   private getUserProductsBasketUrl = 'getProducts';
   private removeUserProductFromBasketUrl = 'removeProduct';
 
+  private productsCounter = 0;
+  public productsInBasket$ = new BehaviorSubject(0);
+
   constructor(private authService: AuthService,
               private http: HttpClient,
               private router: Router) { }
 
   addProductToBasket(product: IProduct) {
-    this.authService.currentUserSubject.subscribe(user => user ? this.currentUserName = user.name: null);
-    if(this.currentUserName ) {
+    this.authService.currentUserSubject.subscribe(user => user ? this.currentUserName = user.name : null);
+    if (this.currentUserName ) {
       return this.http.post(this.addProductsToBasketUrl, product, {
         headers: new HttpHeaders({
-          'userBasketName': this.currentUserName
+          userBasketName: this.currentUserName
         })
       })
-        .subscribe(data => console.log(data))
+        .subscribe(() => {
+          this.productsCounter++;
+          this.productsInBasket$.next(this.productsCounter);
+        });
     } else {
-      this.router.navigate(['auth'])
+      this.router.navigate(['auth']);
     }
   }
 
   getUserProductsBasket() {
-    this.authService.currentUserSubject.subscribe(user => user ? this.currentUserName = user.name: null);
+    this.authService.currentUserSubject.subscribe(user => user ? this.currentUserName = user.name : null);
     return this.http.get(this.getUserProductsBasketUrl, {
       headers: new HttpHeaders({
-        'userBasketName': this.currentUserName
+        userBasketName: this.currentUserName
       })
-    })
+    });
   }
 
   removeUserProductFromBasket(id: number) {
-    this.authService.currentUserSubject.subscribe(user => user ? this.currentUserName = user.name: null);
+    this.authService.currentUserSubject.subscribe(user => user ? this.currentUserName = user.name : null);
     return this.http.delete(this.removeUserProductFromBasketUrl, {
       headers: new HttpHeaders({
-        'userBasketName': this.currentUserName,
-        'productId': id.toString()
+        userBasketName: this.currentUserName,
+        productId: id.toString()
       })
     })
+      .pipe(
+        tap(() => {
+          this.productsCounter--;
+          this.productsInBasket$.next(this.productsCounter);
+        })
+      );
   }
 }
