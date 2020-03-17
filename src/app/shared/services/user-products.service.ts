@@ -6,6 +6,7 @@ import {Router} from '@angular/router';
 import {IProduct} from '@shared/interfaces/product-interface';
 import {BehaviorSubject} from 'rxjs';
 import {tap} from 'rxjs/operators';
+import {isArray} from 'util';
 
 
 @Injectable({
@@ -18,8 +19,8 @@ export class UserProductsService {
   private getUserProductsBasketUrl = 'getProducts';
   private removeUserProductFromBasketUrl = 'removeProduct';
 
-  private productsCounter = 0;
-  public productsInBasket$ = new BehaviorSubject(0);
+  public productsCounter = 0;
+  public productsInBasket$ = new BehaviorSubject(this.productsCounter);
 
   constructor(private authService: AuthService,
               private http: HttpClient,
@@ -51,12 +52,13 @@ export class UserProductsService {
     });
   }
 
-  removeUserProductFromBasket(id: number) {
+  removeUserProductFromBasket(id: number, name: string) {
     this.authService.currentUserSubject.subscribe(user => user ? this.currentUserName = user.name : null);
     return this.http.delete(this.removeUserProductFromBasketUrl, {
       headers: new HttpHeaders({
         userBasketName: this.currentUserName,
-        productId: id.toString()
+        productId: id.toString(),
+        productName: name
       })
     })
       .pipe(

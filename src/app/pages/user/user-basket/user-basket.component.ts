@@ -34,11 +34,10 @@ export class UserBasketComponent implements OnInit {
     );
   }
 
-  removeItemFromBasket(id: number) {
-    this.userProductsService.removeUserProductFromBasket(id).subscribe(
+  removeItemFromBasket(id: number, name: string) {
+    this.userProductsService.removeUserProductFromBasket(id, name).subscribe(
       data => {
         this.updateUserBasket.next(data);
-        console.log(data);
       }
     );
   }
