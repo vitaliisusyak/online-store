@@ -1,12 +1,12 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
 
-import { TrousersComponent } from './trousers.component';
-import { TrousersRoutingComponent } from './trousers-routing.module';
-import { ProductsModule, SpinnerModule } from '@shared/components';
-import { TrousersService } from './trousers.service';
+import {TrousersComponent} from './trousers.component';
+import {TrousersRoutingComponent} from './trousers-routing.module';
+import {ProductsModule, SpinnerModule} from '@shared/components';
+import {TrousersService} from './trousers.service';
 
-@NgModule ({
+@NgModule({
   declarations: [
     TrousersComponent
   ],
@@ -24,4 +24,5 @@ import { TrousersService } from './trousers.service';
   ]
 })
 
-export class TrousersModule {}
+export class TrousersModule {
+}

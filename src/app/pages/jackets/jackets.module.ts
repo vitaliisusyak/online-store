@@ -1,12 +1,12 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
 
-import { JacketsComponent } from './jackets.component';
-import { ProductsModule, SpinnerModule } from '@shared/components';
-import { JacketsRoutingModule } from './jackets-routing.module';
+import {JacketsComponent} from './jackets.component';
+import {ProductsModule, SpinnerModule} from '@shared/components';
+import {JacketsRoutingModule} from './jackets-routing.module';
 import {JacketsService} from './jackets.service';
 
-@NgModule ({
+@NgModule({
   declarations: [
     JacketsComponent
   ],
@@ -23,5 +23,6 @@ import {JacketsService} from './jackets.service';
     JacketsService
   ]
 })
-export class JacketsModule {}
+export class JacketsModule {
+}
 

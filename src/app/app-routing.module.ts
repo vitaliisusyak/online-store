@@ -1,7 +1,7 @@
-import { NgModule } from '@angular/core';
-import {Routes, RouterModule, PreloadAllModules} from '@angular/router';
-import { PageNotFoundComponent } from "@shared/components/page-not-found/page-not-found.component";
-import {UserComponent} from "./pages/user/user.component";
+import {NgModule} from '@angular/core';
+import {PreloadAllModules, RouterModule, Routes} from '@angular/router';
+import {PageNotFoundComponent} from '@shared/components/page-not-found/page-not-found.component';
+import {UserBasketComponent} from './pages/user/user-basket/user-basket.component';
 
 const routes: Routes = [
   {
@@ -33,8 +33,8 @@ const routes: Routes = [
     loadChildren: () => import('./pages/auth/auth.module').then(mod => mod.AuthModule)
   },
   {
-    path: 'user',
-    component: UserComponent
+    path: 'user-basket',
+    component: UserBasketComponent
   },
   {
     path: 'page-not-found',
@@ -48,10 +48,11 @@ const routes: Routes = [
 
 @NgModule({
   imports: [
-    RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules })
+    RouterModule.forRoot(routes, {preloadingStrategy: PreloadAllModules})
   ],
   exports: [RouterModule],
   providers: []
 })
 
-export class AppRoutingModule { }
+export class AppRoutingModule {
+}
