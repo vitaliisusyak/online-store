@@ -1,9 +1,9 @@
 import {ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit} from '@angular/core';
-
 import {Subscription} from 'rxjs';
+import {switchMap} from 'rxjs/operators';
+
 import {AuthService} from '../pages/auth/auth.service';
 import {UserProductsService} from '@shared/services/user-products.service';
-import {switchMap} from 'rxjs/operators';
 import {IProduct} from '@shared/interfaces/product-interface';
 
 @Component({
@@ -17,7 +17,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
   private currentUser;
   private currentUserSubscription: Subscription;
   private productsInBasketCounter: number;
-  private productsInBasketSubscription: Subscription;
 
   constructor(private authService: AuthService,
               private productsService: UserProductsService,

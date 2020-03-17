@@ -59,7 +59,6 @@ export class AuthService {
       })
       .pipe(tap(resData => {
           localStorage.setItem('currentUser', JSON.stringify(resData));
-          console.log(resData);
         },
         validationError => {
           throwError(validationError);

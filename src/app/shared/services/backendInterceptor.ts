@@ -197,7 +197,6 @@ export class BackendInterceptor implements HttpInterceptor {
 
     // route functions
     function login() {
-      console.log(users);
       const { email, password } = body;
       const user = users.find(x => x.email === email && x.password === password);
       if (!user) {
@@ -214,7 +213,6 @@ export class BackendInterceptor implements HttpInterceptor {
 
     function signup() {
       const newUserEmail  = body;
-      console.log(body);
       const user = users.find(x => x.email === newUserEmail.email);
       if (!user) {
         newUserEmail.id = users.length ? users.length + 1 : 1;

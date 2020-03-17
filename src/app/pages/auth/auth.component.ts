@@ -101,7 +101,6 @@ export class AuthComponent implements OnInit {
 
     this.authService.login(email, password).subscribe(
       data => {
-        console.log(data);
         this.router.navigate(['/']);
       },
       error => {
@@ -116,7 +115,6 @@ export class AuthComponent implements OnInit {
 
     this.authService.signup(name, email, password).subscribe(
       data => {
-        console.log(data);
         this.router.navigate(['/']);
       },
       error => {
