@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
-import {MatSnackBar, MatSnackBarConfig, MatSnackBarHorizontalPosition} from '@angular/material/snack-bar';
+import {MatSnackBar, MatSnackBarConfig} from '@angular/material/snack-bar';
 import {throwError} from 'rxjs';
 import {catchError} from 'rxjs/operators';
 
@@ -18,7 +18,6 @@ export class ProductPageComponent implements OnInit {
   private requestUrl: string;
   private product: IProduct;
   private message = "Product has been added to your bag";
-  horizontalPosition: MatSnackBarHorizontalPosition = 'center';
 
   constructor(private productService: ProductService,
               private router: Router,
