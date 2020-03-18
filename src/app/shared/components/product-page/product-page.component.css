@@ -30,3 +30,8 @@
 .add-to-card-button {
   width: 30%;
 }
+
+::ng-deep .snack-class .mat-simple-snackbar {
+  color:#fff;
+  justify-content: center;
+}
