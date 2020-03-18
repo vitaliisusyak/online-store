@@ -11,7 +11,7 @@
 
 <div class="item-list" class="col-sm-3" *ngFor="let product of products | search:searchResult" >
 
-  <div class="item" (click)="gotToProduct(product.id)">
+  <div class="item" (click)="goToProduct(product.id)">
     <div class="item-image">
       <img [src]="product.image" [alt]="product.name">
     </div>

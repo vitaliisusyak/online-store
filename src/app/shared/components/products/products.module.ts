@@ -1,14 +1,15 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
 import {FormsModule} from '@angular/forms';
-import { MatButtonModule, MatInputModule, MatIconModule } from '@angular/material';
+import {MatButtonModule, MatInputModule, MatIconModule} from '@angular/material';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
-import { ProductsComponent } from './products.component';
-import { SearchPipe} from '@shared/pipes';
-import { ProductPageComponent } from '@shared/components/product-page/product-page.component';
+import {ProductsComponent} from './products.component';
+import {SearchPipe} from '@shared/pipes';
+import {ProductPageComponent} from '@shared/components/product-page/product-page.component';
 import {SpinnerModule} from '../spinner/spinner-module';
 
-@NgModule ({
+@NgModule({
   declarations: [
     ProductsComponent,
     SearchPipe,
@@ -20,7 +21,8 @@ import {SpinnerModule} from '../spinner/spinner-module';
     MatInputModule,
     MatIconModule,
     MatButtonModule,
-    SpinnerModule
+    SpinnerModule,
+    MatSnackBarModule
   ],
   exports: [
     ProductsComponent,
@@ -28,4 +30,5 @@ import {SpinnerModule} from '../spinner/spinner-module';
   ]
 })
 
-export class ProductsModule {}
+export class ProductsModule {
+}
