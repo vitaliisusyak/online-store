@@ -1,4 +1,4 @@
-<div id="emptyBag" *ngIf="isEmpty">
+<div id="emptyBag" *ngIf="isEmpty && !showSpinner">
   <div class="emptyBag">
     <img src="../../../../assets/emptyBag.png" alt="Empty Bag">
     <p>Your bag is empty</p>
@@ -6,7 +6,7 @@
   </div>
 </div>
 
-<div class="container" *ngIf="!isEmpty">
+<div class="container" *ngIf="!isEmpty && !showSpinner">
   <div class="row">
     <table mat-table [dataSource]="userProducts" class="mat-elevation-z8">
       <!-- Image Column -->
@@ -67,3 +67,6 @@
     </table>
   </div>
 </div>
+
+<app-spinner *ngIf="showSpinner">
+</app-spinner>

@@ -1,8 +1,8 @@
-import {Component, OnInit} from '@angular/core';
-import {BehaviorSubject} from 'rxjs';
-import {switchMap} from 'rxjs/operators';
+import { Component, OnInit } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
+import { switchMap } from 'rxjs/operators';
 
-import {UserProductsService} from '@shared/services/user-products.service';
+import { UserProductsService } from '@shared/services/user-products.service';
 import { IProduct } from '@shared/interfaces/product-interface';
 
 @Component({
@@ -12,29 +12,33 @@ import { IProduct } from '@shared/interfaces/product-interface';
 })
 export class UserBasketComponent implements OnInit {
   displayedColumns: string[] = ['image', 'name', 'price', 'amount', 'remove'];
-  private userProducts;
+  private userProducts: IProduct[];
   private updateUserBasket = new BehaviorSubject(null);
   private totalPrice: number;
   private isEmpty: boolean;
+  private showSpinner = false;
 
   constructor(private userProductsService: UserProductsService) {
   }
 
   ngOnInit() {
+    this.showSpinner = true;
     this.updateUserBasket
       .pipe(
         switchMap(value => {
           return this.userProductsService.getUserProductsBasket();
         })
-      ).subscribe(
-        userProductsBasket => {
-        this.userProducts = userProductsBasket;
-        this.userProducts.length === 0 ? this.isEmpty = true : this.isEmpty = false;
-        this.totalPrice = this.userProducts
-          .map(product => product.price * product.amount)
-          .reduce((acc, value) => acc + value, 0);
-      }
-    );
+      )
+      .subscribe(
+        (userProductsBasket: IProduct[]) => {
+          this.showSpinner = false;
+          userProductsBasket.length === 0 ? this.isEmpty = true : this.isEmpty = false;
+          this.userProducts = userProductsBasket;
+          this.totalPrice = this.userProducts
+            .map(product => +product.price * product.amount)
+            .reduce((acc, value) => acc + value, 0);
+        }
+      );
   }
 
   removeItemFromBasket(id: number, name: string) {
