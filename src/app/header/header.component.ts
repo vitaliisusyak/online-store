@@ -39,7 +39,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
           return this.productsService.getUserProductsBasket();
         })
       ).subscribe((productsBasket: IProduct[]) => {
-      this.productsInBasketCounter = productsBasket.length;
+      this.productsInBasketCounter = productsBasket.map(product => product.amount).reduce((acc, value) => acc + value, 0)
       this.cd.markForCheck();
     });
   }

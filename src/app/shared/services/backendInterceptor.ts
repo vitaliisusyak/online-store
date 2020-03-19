@@ -162,15 +162,15 @@ export class BackendInterceptor implements HttpInterceptor {
           return signup();
         // Get all products
         case url.endsWith('accessories') && method === 'GET':
-          return of(new HttpResponse({status: 200, body: accessoriesData}));
+          return of(new HttpResponse({ status: 200, body: accessoriesData }));
         case url.endsWith('/jackets') && method === 'GET':
-          return of(new HttpResponse({status: 200, body: jacketsData}));
+          return of(new HttpResponse({ status: 200, body: jacketsData }));
         case url.endsWith('/shirts'):
-          return of(new HttpResponse({status: 200, body: shirtsData}));
+          return of(new HttpResponse({ status: 200, body: shirtsData }));
         case url.endsWith('/suits'):
-          return of(new HttpResponse({status: 200, body: suitsData}));
+          return of(new HttpResponse({ status: 200, body: suitsData }));
         case url.endsWith('/trousers'):
-          return of(new HttpResponse({status: 200, body: trousersData}));
+          return of(new HttpResponse({ status: 200, body: trousersData }));
         // Get product by ID
         case url.includes('accessories/') && method === 'GET':
           return getProductById();
@@ -189,6 +189,9 @@ export class BackendInterceptor implements HttpInterceptor {
           return getUserProductsBasket();
         case url.endsWith('removeProduct') && method === 'DELETE':
           return removeProductFromBasket();
+        // Change amount of the same product in the basket
+        case url.endsWith('changeProductQuantity') && method === 'PUT':
+          return changeProductAmount();
         default:
           // pass through any requests not handled above
           return next.handle(request);
@@ -207,12 +210,12 @@ export class BackendInterceptor implements HttpInterceptor {
           email: user.email,
           token: user.token,
           name: user.name
-          });
-        }
+        });
+      }
     }
 
     function signup() {
-      const newUserEmail  = body;
+      const newUserEmail = body;
       const user = users.find(x => x.email === newUserEmail.email);
       if (!user) {
         newUserEmail.id = users.length ? users.length + 1 : 1;
@@ -274,9 +277,13 @@ export class BackendInterceptor implements HttpInterceptor {
 
     function addProductToUserBasket() {
       const newProductItem = body;
+      newProductItem.amount = 0;
       const userBasketName = headers.get('userBasketName');
       const productsBasketArray = JSON.parse(localStorage.getItem(userBasketName)) || [];
-      if (newProductItem) {
+      const { id, name } = newProductItem;
+      const checkIfExist = productsBasketArray.find(item => item.id == id && item.name == name)
+      if (!checkIfExist) {
+        newProductItem.amount++;
         productsBasketArray.push(newProductItem);
         localStorage.setItem(userBasketName, JSON.stringify(productsBasketArray));
         return ok(productsBasketArray)
@@ -310,6 +317,18 @@ export class BackendInterceptor implements HttpInterceptor {
       }
     }
 
+    function changeProductAmount() {
+      const userBasketName = headers.get('userBasketName');
+      const productId = headers.get('productId');
+      const productName = headers.get('productName');
+
+      const productsBasketArray = JSON.parse(localStorage.getItem(userBasketName));
+      productsBasketArray.find(product => product.id == +productId && product.name == productName).amount = body.amount;
+
+      localStorage.setItem(userBasketName, JSON.stringify(productsBasketArray));
+      return ok(productsBasketArray);
+    }
+
     function ok(body?) {
       return of(new HttpResponse({ status: 200, body }));
     }
@@ -318,7 +337,7 @@ export class BackendInterceptor implements HttpInterceptor {
       return throwError({ error: { message } });
     }
   }
-  }
+}
 
 
 

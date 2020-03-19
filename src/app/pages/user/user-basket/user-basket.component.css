@@ -52,3 +52,12 @@ tr.mat-footer-row {
 .icon-button:hover {
   color: #673ab7;
 }
+
+.product-amount {
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  text-align: center;
+  vertical-align: super;
+  font-size: 16px;
+}
