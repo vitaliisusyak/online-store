@@ -15,6 +15,7 @@ export class UserBasketComponent implements OnInit {
   private userProducts;
   private updateUserBasket = new BehaviorSubject(null);
   private totalPrice: number;
+  private isEmpty: boolean;
 
   constructor(private userProductsService: UserProductsService) {
   }
@@ -28,6 +29,7 @@ export class UserBasketComponent implements OnInit {
       ).subscribe(
         userProductsBasket => {
         this.userProducts = userProductsBasket;
+        this.userProducts.length === 0 ? this.isEmpty = true : this.isEmpty = false;
         this.totalPrice = this.userProducts
           .map(product => product.price * product.amount)
           .reduce((acc, value) => acc + value, 0);

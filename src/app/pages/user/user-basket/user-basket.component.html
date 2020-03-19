@@ -1,4 +1,12 @@
-<div class="container">
+<div id="emptyBag" *ngIf="isEmpty">
+  <div class="emptyBag">
+    <img src="../../../../assets/emptyBag.png" alt="Empty Bag">
+    <p>Your bag is empty</p>
+    <button mat-raised-button color="primary" type="button" routerLink="">GO TO HOMEPAGE</button>
+  </div>
+</div>
+
+<div class="container" *ngIf="!isEmpty">
   <div class="row">
     <table mat-table [dataSource]="userProducts" class="mat-elevation-z8">
       <!-- Image Column -->
