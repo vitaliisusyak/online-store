@@ -17,7 +17,8 @@ export class ProductPageComponent implements OnInit {
   private id: string;
   private requestUrl: string;
   private product: IProduct;
-  private message = "Product has been added to your bag";
+  private messageSuccess = "Product has been added to your bag";
+  private messageError = "The product has already been added to the cart. Check your bag, please."
 
   constructor(private productService: ProductService,
               private router: Router,
@@ -38,13 +39,21 @@ export class ProductPageComponent implements OnInit {
       .subscribe(product => this.product = product);
   }
 
-  addProductToBasket(product: IProduct) {
-    // Add snack bar to the page
-    let config = new MatSnackBarConfig();
-    config.duration = 1000;
-    config.panelClass = ['snack-class'];
-    this.snackBar.open(this.message, '', config);
-    // Add product to the bag 
-    return this.usersService.addProductToBasket(product);
+  addProductToBasket(product: IProduct) { 
+    return this.usersService.addProductToBasket(product)
+      .subscribe(
+        data => {
+          let config = new MatSnackBarConfig();
+          config.duration = 1000;
+          config.panelClass = ['snack-class'];
+          this.snackBar.open(this.messageSuccess, '', config);
+        },
+        error => {
+          let config = new MatSnackBarConfig();
+          config.duration = 4000;
+          config.panelClass = ['snack-class','snack-class-error'];
+          this.snackBar.open(this.messageError, '', config);
+        }
+      );
   }
 }

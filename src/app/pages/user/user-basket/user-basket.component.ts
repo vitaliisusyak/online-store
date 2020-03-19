@@ -3,6 +3,7 @@ import {BehaviorSubject} from 'rxjs';
 import {switchMap} from 'rxjs/operators';
 
 import {UserProductsService} from '@shared/services/user-products.service';
+import { IProduct } from '@shared/interfaces/product-interface';
 
 @Component({
   selector: 'app-user-basket',
@@ -10,7 +11,7 @@ import {UserProductsService} from '@shared/services/user-products.service';
   styleUrls: ['./user-basket.component.css']
 })
 export class UserBasketComponent implements OnInit {
-  displayedColumns: string[] = ['image', 'name', 'price', 'remove'];
+  displayedColumns: string[] = ['image', 'name', 'price', 'amount', 'remove'];
   private userProducts;
   private updateUserBasket = new BehaviorSubject(null);
   private totalPrice: number;
@@ -25,10 +26,10 @@ export class UserBasketComponent implements OnInit {
           return this.userProductsService.getUserProductsBasket();
         })
       ).subscribe(
-      data => {
-        this.userProducts = data;
+        userProductsBasket => {
+        this.userProducts = userProductsBasket;
         this.totalPrice = this.userProducts
-          .map(product => product.price)
+          .map(product => product.price * product.amount)
           .reduce((acc, value) => acc + value, 0);
       }
     );
@@ -36,9 +37,30 @@ export class UserBasketComponent implements OnInit {
 
   removeItemFromBasket(id: number, name: string) {
     this.userProductsService.removeUserProductFromBasket(id, name).subscribe(
-      data => {
-        this.updateUserBasket.next(data);
+      updatedBasket => {
+        this.updateUserBasket.next(updatedBasket);
       }
     );
+  }
+
+  incrementAmountOfProducts(product: IProduct) {
+    product.amount++
+    this.userProductsService.changeProductQuantity(product).subscribe(
+      updatedBasket => {
+        this.updateUserBasket.next(updatedBasket)
+      }
+    )
+  }
+
+  decrementAmountOfProducts(product: IProduct) {
+    if (product.amount < 2) {
+      return
+    }
+    product.amount--
+    this.userProductsService.changeProductQuantity(product).subscribe(
+      updatedBasket => {
+        this.updateUserBasket.next(updatedBasket)
+      }
+    )
   }
 }
