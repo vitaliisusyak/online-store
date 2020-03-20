@@ -1,5 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {Location} from '@angular/common';
 import {Router} from '@angular/router';
 
 @Component({
@@ -11,8 +10,7 @@ import {Router} from '@angular/router';
 export class AppComponent implements OnInit {
   title = 'online-store';
 
-  constructor(private location: Location,
-              private router: Router) {
+  constructor(private router: Router) {
   }
 
   ngOnInit(): void {

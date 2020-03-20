@@ -1,0 +1,26 @@
+.container {
+    margin-top: 3em;
+}
+
+.active-link {
+    border: 2px solid #333;
+}
+
+a, a:hover, a:active {
+    display: block;
+    text-decoration: none;
+    color: #333;
+    box-sizing: border-box;
+}
+
+.user-page-nav {
+    text-align: center;
+    padding: 1em;
+    font-size: 1.2em;
+    text-transform: uppercase;
+}
+
+.user-page-nav:hover {
+    background-color: #f7f7f7;
+    cursor: pointer; 
+}

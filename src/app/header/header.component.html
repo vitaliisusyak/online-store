@@ -23,15 +23,23 @@
             </i>
           </a>
         </li>
-        <!--<li routerLinkActive="active" >
-          <a routerLink="/user">{{ currentUser.name }}</a>
-        </li>-->
         <li>
-          <a title="Log Out" (click)="logOut()" class="log-out">
-            <i class="glyphicon glyphicon-log-out"></i>
+          <a [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu" class="user-icon">
+            <i class="glyphicon glyphicon-user"></i>
           </a>
+          <mat-menu #menu="matMenu">
+            <button mat-menu-item routerLink = "/user-profile">
+              <span>Info</span>
+            </button>
+            <button mat-menu-item routerLink = "/user-profile/purchase-history">
+              <span>Purchase history</span>
+            </button>
+            <button mat-menu-item (click) = "logOut()">
+              <span>Log Out</span>
+            </button>
+          </mat-menu>
         </li>
-        <li></li>
+
       </ul>
       <li *ngIf="!currentUser">
         <a routerLink="/auth" title="Log In">
