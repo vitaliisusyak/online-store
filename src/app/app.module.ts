@@ -4,6 +4,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {CommonModule} from '@angular/common';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {MatMenuModule} from '@angular/material/menu';
 
 import {AppComponent} from './app.component';
 import {HeaderComponent} from './header/header.component';
@@ -35,7 +36,8 @@ import {MatBadgeModule} from '@angular/material/badge';
     MatButtonModule,
     MatTableModule,
     MatIconModule,
-    MatBadgeModule
+    MatBadgeModule,
+    MatMenuModule
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,

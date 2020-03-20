@@ -1,0 +1,21 @@
+<main class="container">
+    <nav class="col-md-3">
+        <div>
+            <a routerLink="/user-profile" 
+            routerLinkActive='active-link'
+            [routerLinkActiveOptions]="{exact:true}">
+                <div class="user-page-nav">Info</div>
+            </a>
+            <a routerLink="/user-profile/purchase-history" routerLinkActive='active-link'>
+                <div class="user-page-nav">Purchase History</div>
+            </a>
+            <a (click)="logOut()">
+                <div class="user-page-nav">Log Out</div>
+            </a>
+        </div>
+    </nav>
+    <section class="col-md-9">
+        <p *ngIf="router.url == '/user-profile'">user info</p>
+        <router-outlet></router-outlet>
+    </section>
+</main>

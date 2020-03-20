@@ -2,6 +2,7 @@ import {NgModule} from '@angular/core';
 import {PreloadAllModules, RouterModule, Routes} from '@angular/router';
 import {PageNotFoundComponent} from '@shared/components/page-not-found/page-not-found.component';
 import {UserBasketComponent} from './pages/user/user-basket/user-basket.component';
+import { UserProfileComponent } from './pages/user/user-profile/user-profile.component';
 
 const routes: Routes = [
   {
@@ -31,6 +32,10 @@ const routes: Routes = [
   {
     path: 'auth',
     loadChildren: () => import('./pages/auth/auth.module').then(mod => mod.AuthModule)
+  },
+  {
+    path: 'user-profile',
+    loadChildren: () => import('./pages/user/user-profile/user-profile.module').then(mod => mod.UserProfileModule)
   },
   {
     path: 'user-basket',
