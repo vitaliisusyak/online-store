@@ -23,7 +23,6 @@ export class AuthService {
 
   afterLogin() {
     const loggedUser = localStorage.getItem('currentUser');
-    console.log('afterlogin');
     if (loggedUser) {
       this.currentUserSubject.next(JSON.parse(loggedUser));
     }
