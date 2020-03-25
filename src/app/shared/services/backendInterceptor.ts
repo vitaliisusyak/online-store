@@ -192,6 +192,13 @@ export class BackendInterceptor implements HttpInterceptor {
         // Change amount of the same product in the basket
         case url.endsWith('changeProductQuantity') && method === 'PUT':
           return changeProductAmount();
+        // User profiles calls (Get, Edit)
+        case url.endsWith('userData') && method === 'GET':
+          return getUserData();
+        case url.endsWith('editUserInfo') && method === 'PUT':
+          return editUserInfo();
+        case url.endsWith('changeUserPassword') && method === 'PUT':
+          return changeUserPassword();
         default:
           // pass through any requests not handled above
           return next.handle(request);
@@ -281,12 +288,12 @@ export class BackendInterceptor implements HttpInterceptor {
       const userBasketName = headers.get('userBasketName');
       const productsBasketArray = JSON.parse(localStorage.getItem(userBasketName)) || [];
       const { id, name } = newProductItem;
-      const checkIfExist = productsBasketArray.find(item => item.id == id && item.name == name)
+      const checkIfExist = productsBasketArray.find(item => item.id === id && item.name === name);
       if (!checkIfExist) {
         newProductItem.amount++;
         productsBasketArray.push(newProductItem);
         localStorage.setItem(userBasketName, JSON.stringify(productsBasketArray));
-        return ok(productsBasketArray)
+        return ok(productsBasketArray);
       } else {
         return error('Something went wrong!');
       }
@@ -296,7 +303,7 @@ export class BackendInterceptor implements HttpInterceptor {
       const userBasketName = headers.get('userBasketName');
       const productsBasketArray = JSON.parse(localStorage.getItem(userBasketName)) || [];
       if (productsBasketArray) {
-        return ok(productsBasketArray)
+        return ok(productsBasketArray);
       } else {
         return error('Something went wrong!');
       }
@@ -323,10 +330,41 @@ export class BackendInterceptor implements HttpInterceptor {
       const productName = headers.get('productName');
 
       const productsBasketArray = JSON.parse(localStorage.getItem(userBasketName));
-      productsBasketArray.find(product => product.id == +productId && product.name == productName).amount = body.amount;
+      productsBasketArray.find(product => product.id === +productId && product.name === productName).amount = body.amount;
 
       localStorage.setItem(userBasketName, JSON.stringify(productsBasketArray));
       return ok(productsBasketArray);
+    }
+
+    function getUserData() {
+      const userId = +headers.get('userId');
+      const allUsers = JSON.parse(localStorage.getItem('users'));
+      const requestedUser = allUsers.find(user => user.id === userId)
+
+      return ok(requestedUser);
+    }
+
+    function editUserInfo() {
+      const { name, email, userId} = body;
+      const allUsers = JSON.parse(localStorage.getItem('users'));
+      const editedUserIndex = allUsers.findIndex(user => user.id === +userId);
+
+      allUsers[editedUserIndex].name = name;
+      allUsers[editedUserIndex].email = email;
+
+      localStorage.setItem('users', JSON.stringify(allUsers));
+      return ok(allUsers[editedUserIndex]);
+    }
+
+    function changeUserPassword() {
+      const {password, userId} = body;
+      const allUsers = JSON.parse(localStorage.getItem('users'));
+      const editedUserIndex = allUsers.findIndex(user => user.id === +userId);
+
+      allUsers[editedUserIndex].password = password;
+
+      localStorage.setItem('users', JSON.stringify(allUsers));
+      return ok(allUsers[editedUserIndex]);
     }
 
     function ok(body?) {

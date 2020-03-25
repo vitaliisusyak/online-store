@@ -14,11 +14,26 @@ export class CustomValidators {
     };
   }
 
-  static passwordMatchValidator(control: AbstractControl) {
+  static passwordMatchValidator(control: AbstractControl): ValidationErrors | null  {
     const password: string = control.get('password').value;
     const confirmPassword: string = control.get('confirmPassword').value;
     if (password !== confirmPassword) {
       control.get('confirmPassword').setErrors({ NoPasswordMatch: true });
+      return { NoPasswordMatch: true };
+    } else {
+      return null;
+    }
+  }
+
+  static newPasswordMatchValidator(control: AbstractControl): ValidationErrors | null {
+    const currentPassword: string = control.get('oldPassword').value;
+    const newPassword: string = control.get('password').value;
+
+    if (currentPassword === newPassword) {
+      control.get('password').setErrors({ samePassword: true });
+      return { samePassword: true };
+    } else {
+      return null;
     }
   }
 }

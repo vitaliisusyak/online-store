@@ -1,0 +1,33 @@
+<div class="dialog-header">
+    <h3 class="dialog-title">Edit info</h3>
+    <mat-icon class="dialog-icon-close" [mat-dialog-close]="true">close</mat-icon>
+</div>
+<mat-dialog-content>
+    <form class="from-form" [formGroup]="editUserInfoGroup">
+
+        <mat-form-field class="form-full-width">
+            <input matInput id="editUserName" name="editUserName" type="text" formControlName="editUserName" />
+            <mat-error *ngIf="editUserInfoGroup.get('editUserName').hasError('minlength')">
+                Name should be at least <strong>3 characters</strong> long
+            </mat-error>
+            <mat-error *ngIf="editUserInfoGroup.get('editUserName').hasError('required')">
+                Name is <strong>required</strong>
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="form-full-width">
+            <input matInput id="editUserEmail" name="editUserEmail" type="email" formControlName="editUserEmail" />
+            <mat-error *ngIf="editUserInfoGroup.get('editUserEmail').hasError('email')">
+                Please enter a <strong>valid</strong>
+            </mat-error>
+            <mat-error *ngIf="editUserInfoGroup.get('editUserEmail').hasError('required')">
+                Email could not be an empty string
+            </mat-error>
+        </mat-form-field>
+
+    </form>
+</mat-dialog-content>
+<mat-dialog-actions>
+    <button mat-raised-button color="primary" mat-dialog-close (click)="onEditInfo(editUserInfoGroup)">Edit</button>
+    <button mat-stroked-button color="primary" [mat-dialog-close]="true">Cancel</button>
+</mat-dialog-actions>

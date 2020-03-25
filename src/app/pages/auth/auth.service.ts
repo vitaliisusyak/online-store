@@ -13,12 +13,17 @@ import {ActivatedRoute, Router} from '@angular/router';
 
 export class AuthService {
   public currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
+  public currentUser: User;
   private loginJsonUrl = '/login';
   private signupJsonUrl = '/signup';
 
   constructor(private http: HttpClient,
               private router: Router,
               private route: ActivatedRoute) {
+  }
+
+  checkUser() {
+    return this.currentUserSubject.subscribe(user => user ? this.currentUser = user : null);
   }
 
   afterLogin() {

@@ -1,22 +1,21 @@
-import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {CommonModule} from '@angular/common';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
+import {BrowserModule} from '@angular/platform-browser';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatMenuModule} from '@angular/material/menu';
-
-import {AppComponent} from './app.component';
-import {HeaderComponent} from './header/header.component';
-import {AppRoutingModule} from './app-routing.module';
-import {SpinnerModule} from '@shared/components';
-import {BackendInterceptor} from '@shared/services/backendInterceptor';
-import {PageNotFoundComponent} from '@shared/components/page-not-found/page-not-found.component';
 import {MatButtonModule} from '@angular/material/button';
-import {UserBasketComponent} from './pages/user/user-basket/user-basket.component';
 import {MatTableModule} from '@angular/material/table';
 import {MatIconModule} from '@angular/material/icon';
 import {MatBadgeModule} from '@angular/material/badge';
+
+import {AppComponent} from './app.component';
+import {AppRoutingModule} from './app-routing.module';
+import {HeaderComponent} from './header/header.component';
+import {SpinnerModule, PageNotFoundComponent } from '@shared/components';
+import {BackendInterceptor} from '@shared/services/backendInterceptor';
+import {UserBasketComponent} from './pages/user/user-basket/user-basket.component';
 
 @NgModule({
   declarations: [

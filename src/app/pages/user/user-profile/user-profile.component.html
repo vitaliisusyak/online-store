@@ -1,9 +1,7 @@
-<main class="container">
+<main class="container main">
     <nav class="col-md-3">
         <div>
-            <a routerLink="/user-profile" 
-            routerLinkActive='active-link'
-            [routerLinkActiveOptions]="{exact:true}">
+            <a routerLink="/user-profile" routerLinkActive='active-link' [routerLinkActiveOptions]="{exact:true}">
                 <div class="user-page-nav">Info</div>
             </a>
             <a routerLink="/user-profile/purchase-history" routerLinkActive='active-link'>
@@ -15,7 +13,52 @@
         </div>
     </nav>
     <section class="col-md-9">
-        <p *ngIf="router.url == '/user-profile'">user info</p>
+        <!-- User info -->
+        <div *ngIf="router.url == '/user-profile'" class="col-md-12 container-info">
+            <div class="row user-row">
+                <div class="col-md-4  info headers">
+                    <span class="glyphicon glyphicon-user"></span>
+                    <span>Name</span>
+                </div>
+                <div class="col-md-8 info values">
+                    {{ userData.name }}
+                </div>
+            </div>
+            <div class="row user-row">
+                <div class="col-md-4 info headers">
+                    <span class="glyphicon glyphicon-envelope"></span>
+                    <span>Email</span>
+                </div>
+                <div class="col-md-8 info values">
+                    {{ userData.email }}
+                </div>
+            </div>
+            <div class="row user-row">
+                <div class="col-md-4 info headers">
+                    <span class="glyphicon glyphicon-lock"></span>
+                    <span>Password</span>
+                </div>
+                <div class="col-md-8 info values">
+                    {{ userData.password | passwordHide }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3 button">
+                    <button mat-stroked-button color="primary" (click)="onEditInfo()">Edit Info
+                    </button>
+                </div>
+                <div class="col-md-3 button">
+                    <button mat-stroked-button color="primary" (click)='onChangePassword()'>Change Password
+                    </button>
+                </div>
+
+
+            </div>
+        </div>
+
+        <!-- User purchase -->
         <router-outlet></router-outlet>
+
     </section>
+
 </main>
