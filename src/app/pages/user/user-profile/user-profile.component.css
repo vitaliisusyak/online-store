@@ -1,12 +1,14 @@
-.container {
+.container.main {
     margin-top: 3em;
 }
 
 .active-link {
-    border: 2px solid #333;
+    border-left: 2px solid #673ab7;
 }
 
-a, a:hover, a:active {
+a,
+a:hover,
+a:active {
     display: block;
     text-decoration: none;
     color: #333;
@@ -21,6 +23,37 @@ a, a:hover, a:active {
 }
 
 .user-page-nav:hover {
-    background-color: #f7f7f7;
-    cursor: pointer; 
+    background-color: #faf7ff;
+    cursor: pointer;
+}
+
+section,
+nav {
+    padding: 0;
+}
+
+.info {
+    padding: 1.0em;
+    font-size: 1.2em;
+}
+
+.values {
+    color: #ccc
+}
+
+.user-row:nth-child(odd) {
+    background-color: #faf7ff;
+}
+
+.glyphicon {
+    padding-right: 10px;
+}
+
+button {
+    width: 100%
+}
+
+.button {
+    padding-left: 0;
+    padding-top: 1em;
 }
