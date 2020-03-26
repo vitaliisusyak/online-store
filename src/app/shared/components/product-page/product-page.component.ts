@@ -39,19 +39,19 @@ export class ProductPageComponent implements OnInit {
       .subscribe(product => this.product = product);
   }
 
-  addProductToBasket(product: IProduct) { 
+  addProductToBasket(product: IProduct) {
     return this.usersService.addProductToBasket(product)
       .subscribe(
         data => {
-          let config = new MatSnackBarConfig();
+          const config = new MatSnackBarConfig();
           config.duration = 1000;
           config.panelClass = ['snack-class'];
           this.snackBar.open(this.messageSuccess, '', config);
         },
         error => {
-          let config = new MatSnackBarConfig();
+          const config = new MatSnackBarConfig();
           config.duration = 4000;
-          config.panelClass = ['snack-class','snack-class-error'];
+          config.panelClass = ['snack-class', 'snack-class-error'];
           this.snackBar.open(this.messageError, '', config);
         }
       );
