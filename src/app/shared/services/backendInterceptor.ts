@@ -283,9 +283,9 @@ export class BackendInterceptor implements HttpInterceptor {
     }
 
     function addProductToUserBasket() {
-      const newProductItem = body;
+      const {product: newProductItem, userId} = body;
       newProductItem.amount = 0;
-      const userBasketName = headers.get('userBasketName');
+      const userBasketName = 'userBasket' + '/' + userId;
       const productsBasketArray = JSON.parse(localStorage.getItem(userBasketName)) || [];
       const { id, name } = newProductItem;
       const checkIfExist = productsBasketArray.find(item => item.id === id && item.name === name);
@@ -300,7 +300,8 @@ export class BackendInterceptor implements HttpInterceptor {
     }
 
     function getUserProductsBasket() {
-      const userBasketName = headers.get('userBasketName');
+      const userId = headers.get('userId');
+      const userBasketName = 'userBasket' + '/' + userId;
       const productsBasketArray = JSON.parse(localStorage.getItem(userBasketName)) || [];
       if (productsBasketArray) {
         return ok(productsBasketArray);
@@ -310,9 +311,10 @@ export class BackendInterceptor implements HttpInterceptor {
     }
 
     function removeProductFromBasket() {
-      const userBasketName = headers.get('userBasketName');
+      const userId = headers.get('userId');
       const productId = headers.get('productId');
       const productName = headers.get('productName');
+      const userBasketName = 'userBasket' + '/' + userId;
 
       const productsBasketArray = JSON.parse(localStorage.getItem(userBasketName));
       const updatedProductsBasketArray = productsBasketArray.filter(product => product.id !== +productId || product.name !== productName);
@@ -325,12 +327,12 @@ export class BackendInterceptor implements HttpInterceptor {
     }
 
     function changeProductAmount() {
-      const userBasketName = headers.get('userBasketName');
-      const productId = headers.get('productId');
-      const productName = headers.get('productName');
+      const {product: updatedProduct, userId} = body;
+      const userBasketName = 'userBasket' + '/' + userId;
 
       const productsBasketArray = JSON.parse(localStorage.getItem(userBasketName));
-      productsBasketArray.find(product => product.id === +productId && product.name === productName).amount = body.amount;
+      productsBasketArray
+        .find(product => product.id === updatedProduct.id && product.name === updatedProduct.name).amount = updatedProduct.amount;
 
       localStorage.setItem(userBasketName, JSON.stringify(productsBasketArray));
       return ok(productsBasketArray);

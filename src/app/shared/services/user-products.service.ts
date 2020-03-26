@@ -13,7 +13,7 @@ import { tap } from 'rxjs/operators';
 })
 
 export class UserProductsService {
-  private currentUserName: string;
+  private currentUserId: number;
   private addProductsToBasketUrl = 'addProducts';
   private getUserProductsBasketUrl = 'getProducts';
   private removeUserProductFromBasketUrl = 'removeProduct';
@@ -23,20 +23,19 @@ export class UserProductsService {
   public productsInBasket$ = new BehaviorSubject(this.productsCounter);
 
   constructor(private authService: AuthService,
-    private http: HttpClient,
-    private router: Router) { }
+              private http: HttpClient,
+              private router: Router) { }
 
-  checkUserName() {
-    return this.authService.currentUserSubject.subscribe(user => user ? this.currentUserName = user.name : null);
+  checkUserId() {
+    return this.authService.currentUserSubject.subscribe(user => user ? this.currentUserId = +user.id : null);
   }
 
   addProductToBasket(product: IProduct) {
-    this.checkUserName();
-    if (this.currentUserName) {
-      return this.http.post(this.addProductsToBasketUrl, product, {
-        headers: new HttpHeaders({
-          userBasketName: this.currentUserName
-        })
+    this.checkUserId();
+    if (this.currentUserId) {
+      return this.http.post(this.addProductsToBasketUrl, {
+        product,
+        userId: this.currentUserId
       })
         .pipe(
           tap(() => {
@@ -50,19 +49,19 @@ export class UserProductsService {
   }
 
   getUserProductsBasket() {
-    this.checkUserName();
+    this.checkUserId();
     return this.http.get(this.getUserProductsBasketUrl, {
       headers: new HttpHeaders({
-        userBasketName: this.currentUserName
+        userId: this.currentUserId.toString()
       })
     });
   }
 
   removeUserProductFromBasket(id: number, name: string) {
-    this.checkUserName();
+    this.checkUserId();
     return this.http.delete(this.removeUserProductFromBasketUrl, {
       headers: new HttpHeaders({
-        userBasketName: this.currentUserName,
+        userId: this.currentUserId.toString(),
         productId: id.toString(),
         productName: name
       })
@@ -76,20 +75,16 @@ export class UserProductsService {
   }
 
   changeProductQuantity(product) {
-    this.checkUserName();
-    return this.http.put(this.changeProductQuantityUrl, product,
-    {
-      headers: new HttpHeaders({
-        userBasketName: this.currentUserName,
-        productId: product.id.toString(),
-        productName: product.name
-      })
-    }).pipe(
+    this.checkUserId();
+    return this.http.put(this.changeProductQuantityUrl, {
+      product,
+      userId: this.currentUserId
+      },
+    ).pipe(
       tap(() => {
         this.productsInBasket$.next(this.productsCounter);
       })
     );
   }
 
-  
 }

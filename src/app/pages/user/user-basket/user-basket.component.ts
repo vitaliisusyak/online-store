@@ -50,23 +50,23 @@ export class UserBasketComponent implements OnInit {
   }
 
   incrementAmountOfProducts(product: IProduct) {
-    product.amount++
+    product.amount++;
     this.userProductsService.changeProductQuantity(product).subscribe(
       updatedBasket => {
-        this.updateUserBasket.next(updatedBasket)
+        this.updateUserBasket.next(updatedBasket);
       }
-    )
+    );
   }
 
   decrementAmountOfProducts(product: IProduct) {
     if (product.amount < 2) {
-      return
+      return;
     }
-    product.amount--
+    product.amount--;
     this.userProductsService.changeProductQuantity(product).subscribe(
       updatedBasket => {
-        this.updateUserBasket.next(updatedBasket)
+        this.updateUserBasket.next(updatedBasket);
       }
-    )
+    );
   }
 }
